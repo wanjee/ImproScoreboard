@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router';
 </script>
 
 <template>
-    <RouterView />
+    <div>
+        <h1>This will show the large title</h1>
+    </div>
 </template>
 
 <style scoped>
-
 </style>
