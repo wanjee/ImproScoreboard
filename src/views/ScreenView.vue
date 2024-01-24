@@ -1,22 +1,11 @@
-<script lang="ts">
+<script setup lang="ts">
 import { useScoreBoardStore } from '@/stores/scoreBoard'
-import { defineComponent } from 'vue';
 import ScreenBlack from "@/components/screen/black/ScreenBlack.vue";
 import ScreenScore from "@/components/screen/score/ScreenScore.vue";
 import ScreenTitle from "@/components/screen/title/ScreenTitle.vue";
 
-export default defineComponent({
-    components: {
-        ScreenBlack,
-        ScreenScore,
-        ScreenTitle,
-    },
-    setup() {
-        const store = useScoreBoardStore();
+const store = useScoreBoardStore();
 
-        return { store };
-    },
-});
 </script>
 
 <template>

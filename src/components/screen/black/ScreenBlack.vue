@@ -2,9 +2,7 @@
 </script>
 
 <template>
-    <div>
-        <h1>This will show nothing</h1>
-    </div>
+    <div><!-- Empty, show nothing --></div>
 </template>
 
 <style scoped>

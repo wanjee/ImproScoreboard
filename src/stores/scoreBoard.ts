@@ -6,7 +6,7 @@ type State = {
     // Everything related to team B
     teamB: Team,
     // One of the available display types
-    display: string,
+    display: "black" | "title" | "score",
     // In minutes
     periodDuration: number,
 }
@@ -33,7 +33,7 @@ export const useScoreBoardStore = defineStore('scoreBoard', {
                 totalFaults: 0,
                 color: '#d2232a',
             },
-            display: 'none',
+            display: 'title',
             periodDuration: 45,
         }
     },

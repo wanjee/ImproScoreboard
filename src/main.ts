@@ -3,12 +3,21 @@ import './assets/main.css';
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import { PiniaSharedState } from 'pinia-shared-state'
+import 'vuetify/styles'
+import { createVuetify } from 'vuetify'
+import '@mdi/font/css/materialdesignicons.css'
+
 
 import App from './App.vue';
 import router from './router';
 
 const app = createApp(App);
 const pinia = createPinia();
+const vuetify = createVuetify({
+    theme: {
+        defaultTheme: 'dark'
+    }
+})
 
 // Configure Pinia to allow sharing state between different tabs of same browser
 pinia.use(
@@ -24,5 +33,6 @@ pinia.use(
 
 app.use(pinia);
 app.use(router);
+app.use(vuetify);
 
 app.mount('#app');
