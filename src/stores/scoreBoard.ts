@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 
-interface State {
+type State = {
     // Everything related to team A
     teamA: Team,
     // Everything related to team B
@@ -11,7 +11,7 @@ interface State {
     periodDuration: number,
 }
 
-interface Team {
+type Team = {
     score : number,
     partialFaults : number,
     totalFaults : number,
