@@ -1,9 +1,13 @@
 <script setup lang="ts">
 import { useScoreBoardStore } from '@/stores/scoreBoard'
 import { useTheme } from 'vuetify'
+import ControlTeam from "@/components/control/team/ControlTeam.vue";
+import {storeToRefs} from "pinia";
 
 const theme = useTheme()
 const store = useScoreBoardStore();
+
+const { teams } = storeToRefs(store)
 
 // Globally switch the admin from light to dark theme
 function toggleTheme () {
@@ -14,61 +18,46 @@ function toggleTheme () {
 
 <template>
     <v-layout>
-        <v-app-bar title="Administration">
-            <v-btn @click="toggleTheme">
-                <v-icon>mdi-theme-light-dark</v-icon>
-            </v-btn>
+        <v-app-bar>
+            <template v-slot:prepend>
+                <v-btn icon="mdi-theme-light-dark" elevation="2" @click="toggleTheme"></v-btn>
+            </template>
+            <v-app-bar-title>Administration</v-app-bar-title>
             <v-spacer></v-spacer>
-            <v-btn-toggle
-                v-model="store.display"
-                mandatory
-                density="compact"
-                color="primary"
-                variant="outlined"
-                rounded="xl"
-            >
-                <v-btn value="black">
-                    Black
-                </v-btn>
-                <v-btn value="title">
-                    Title
-                </v-btn>
-                <v-btn value="score">
-                    Score
-                </v-btn>
-            </v-btn-toggle>
+            <template v-slot:append>
+                <v-btn-toggle
+                    v-model="store.display"
+                    mandatory
+                    variant="outlined"
+                    rounded="xl"
+                    elevation="2"
+                    color="success"
+                >
+                    <v-btn value="black">
+                        Black
+                    </v-btn>
+                    <v-btn value="title">
+                        Title
+                    </v-btn>
+                    <v-btn value="score">
+                        Score
+                    </v-btn>
+                </v-btn-toggle>
+            </template>
         </v-app-bar>
         <v-main>
             <v-container fluid fill-height>
-                <v-row align="center">
-                    <v-col cols="4">
-                        <v-text-field
-                            required
-                            hide-details
-                            variant="solo"
-                            prepend-icon="mdi-minus"
-                            append-icon="mdi-plus"
-                            @click:prepend="console.log('----')"
-                            @click:append="console.log('++++')"
-                        ></v-text-field>
-                    </v-col>
-
-                    <v-col cols="4" class="d-flex justify-center align-center">
+                <v-row>
+                    <v-col cols="4" offset="4" class="d-flex justify-center align-center">
                         <v-btn size="default" icon="mdi-play" color="success"></v-btn>
                         <v-btn size="default" icon="mdi-pause" color="warning"></v-btn>
                         <v-btn size="default" icon="mdi-stop" color="error"></v-btn>
                     </v-col>
 
-                    <v-col cols="4">
-                        <v-text-field
-                            required
-                            hide-details
-                            variant="solo"
-                            prepend-icon="mdi-minus"
-                            append-icon="mdi-plus"
-                            @click:prepend="console.log('----')"
-                            @click:append="console.log('++++')"
-                        ></v-text-field>
+                </v-row>
+                <v-row align="center">
+                    <v-col v-for="team in teams" :key="team.id" cols="6">
+                        <ControlTeam :teamId="team.id"></ControlTeam>
                     </v-col>
                 </v-row>
             </v-container>
@@ -77,7 +66,14 @@ function toggleTheme () {
         <v-app-bar location="bottom">
             <v-spacer></v-spacer>
             <RouterLink to="screen" title="Open main display" target="_blank">
-                <v-btn elevation="4" size="large" color="success" rounded="xl">Open main display<v-icon>mdi-play</v-icon></v-btn>
+                <v-btn
+                    variant="outlined"
+                    elevation="2"
+                    color="success"
+                    rounded="xl">
+                    Open score display
+                    <v-icon>mdi-open-in-new</v-icon>
+                </v-btn>
             </RouterLink>
             <v-spacer></v-spacer>
         </v-app-bar>

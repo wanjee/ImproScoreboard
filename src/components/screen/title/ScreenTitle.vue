@@ -2,9 +2,13 @@
 </script>
 
 <template>
-    <div>
-        <h1>This will show the large title</h1>
-    </div>
+    <v-container fluid fill-height>
+        <v-row class="d-flex justify-start align-center pa-6">
+            <v-col class="d-flex flex-column justify-center align-center">
+                <h1>La Ligue d'Impro</h1>
+            </v-col>
+        </v-row>
+    </v-container>
 </template>
 
 <style scoped>
