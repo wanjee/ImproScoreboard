@@ -17,16 +17,16 @@ export const useScoreBoardStore = defineStore('scoreBoard', {
         {
           id: 1,
           name: 'Team A',
-          score: 1,
-          faults: 3,
+          score: 0,
+          faults: 0,
           color: '#d2232a',
         },
         {
           id: 2,
           name: 'Team B',
-          score: 5,
-          faults: 7,
-          color: '#307f26',
+          score: 0,
+          faults: 0,
+          color: '#00a651',
         },
       ],
       display: 'title',
@@ -48,7 +48,8 @@ export const useScoreBoardStore = defineStore('scoreBoard', {
     },
     decrementTeamScore(id: number) {
       const team = this.teams.find((obj) => obj.id === id)
-      if (team) {
+      // Prevent negative score
+      if (team && team.score > 0) {
         team.score--
       }
     },
@@ -60,7 +61,8 @@ export const useScoreBoardStore = defineStore('scoreBoard', {
     },
     decrementTeamFaults(id: number) {
       const team = this.teams.find((obj) => obj.id === id)
-      if (team) {
+      // Prevent negative faults count
+      if (team && team.faults > 0) {
         team.faults--
       }
     },
