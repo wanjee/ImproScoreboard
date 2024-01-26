@@ -15,7 +15,7 @@ const { teams } = storeToRefs(store)
       </v-col>
     </v-row>
     <v-row justify-center align-center>
-      <v-col v-for="team in teams" :key="team.id" cols="6">
+      <v-col v-for="(team, key) in teams" :key="key" cols="6">
         <v-card :color="team.color">
           <v-container>
             <v-row dense justify-center align-center>

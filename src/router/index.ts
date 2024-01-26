@@ -10,7 +10,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AdminView.vue'),
+      component: () => import('../views/ControlView.vue'),
     },
     {
       // Everything that should be on the huge public display

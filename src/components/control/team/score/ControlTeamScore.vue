@@ -1,29 +1,29 @@
 <script setup lang="ts">
 import { useScoreBoardStore } from '@/stores/scoreBoard'
 import { storeToRefs } from 'pinia'
+import type { teamKey as teamKeyType } from '@/ts/types/global'
 
 const props = defineProps<{
-  teamId: number
+  teamKey: teamKeyType
 }>()
 
 const store = useScoreBoardStore()
 
-const { getTeamById } = storeToRefs(store)
-// FIXME not reactive, not updated after initial load
-const team = getTeamById.value(props.teamId)
+const { getTeamByKey } = storeToRefs(store)
+const team = getTeamByKey.value(props.teamKey)
 </script>
 
 <template>
-  <v-container v-if="team">
+  <v-container>
     <v-row dense justify-center align-center>
       <v-col class="d-flex justify-end align-center pa-6">
-        <v-btn color="red" icon="mdi-minus" @click="store.decrementTeamScore(team.id)"></v-btn>
+        <v-btn color="red" icon="mdi-minus" @click="store.decrementTeamScore(teamKey)"></v-btn>
       </v-col>
       <v-col class="d-flex justify-center align-center pa-6 score-display">
         {{ team.score }}
       </v-col>
       <v-col class="d-flex justify-start align-center pa-6">
-        <v-btn color="green" icon="mdi-plus" @click="store.incrementTeamScore(team.id)"></v-btn>
+        <v-btn color="green" icon="mdi-plus" @click="store.incrementTeamScore(teamKey)"></v-btn>
       </v-col>
     </v-row>
   </v-container>

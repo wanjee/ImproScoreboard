@@ -21,7 +21,7 @@ function toggleTheme() {
       <template v-slot:prepend>
         <v-btn icon="mdi-theme-light-dark" elevation="2" @click="toggleTheme"></v-btn>
       </template>
-      <v-app-bar-title>Administration</v-app-bar-title>
+      <v-app-bar-title>Control</v-app-bar-title>
       <v-spacer></v-spacer>
       <template v-slot:append>
         <v-btn-toggle v-model="store.display" mandatory variant="outlined" rounded="xl" elevation="2" color="success">
@@ -41,8 +41,8 @@ function toggleTheme() {
           </v-col>
         </v-row>
         <v-row align="center">
-          <v-col v-for="team in teams" :key="team.id" cols="6">
-            <ControlTeam :teamId="team.id"></ControlTeam>
+          <v-col v-for="(team, key) in teams" :key="key" cols="6">
+            <ControlTeam :teamKey="key"></ControlTeam>
           </v-col>
         </v-row>
       </v-container>
