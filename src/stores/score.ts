@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import type { State, teamKey } from '@/ts/types/global'
 
-export const useScoreBoardStore = defineStore('scoreBoard', {
+export const useScoreStore = defineStore('scoreBoard', {
   state: (): State => {
     return {
       teams: {

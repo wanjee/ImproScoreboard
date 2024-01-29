@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { useScoreBoardStore } from '@/stores/scoreBoard'
+import { useScoreStore } from '@/stores/score'
 import { storeToRefs } from 'pinia'
 
-const store = useScoreBoardStore()
+const scoreStore = useScoreStore()
 
-const { teams } = storeToRefs(store)
+const { teams } = storeToRefs(scoreStore)
 </script>
 
 <template>

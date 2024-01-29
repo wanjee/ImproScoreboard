@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import ControlTeamScore from '@/components/control/team/score/ControlTeamScore.vue'
-import { useScoreBoardStore } from '@/stores/scoreBoard'
+import { useScoreStore } from '@/stores/score'
 import { storeToRefs } from 'pinia'
 import ControlTeamFaults from '@/components/control/team/faults/ControlTeamFaults.vue'
 import type { teamKey as teamKeyType } from '@/ts/types/global'
@@ -9,9 +9,9 @@ const props = defineProps<{
   teamKey: teamKeyType
 }>()
 
-const store = useScoreBoardStore()
+const scoreStore = useScoreStore()
 
-const { getTeamByKey } = storeToRefs(store)
+const { getTeamByKey } = storeToRefs(scoreStore)
 const team = getTeamByKey.value(props.teamKey)
 </script>
 

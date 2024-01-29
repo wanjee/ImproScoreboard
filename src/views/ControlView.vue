@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { useScoreBoardStore } from '@/stores/scoreBoard'
+import { useScoreStore } from '@/stores/score'
 import { useTheme } from 'vuetify'
 import ControlTeam from '@/components/control/team/ControlTeam.vue'
 import { storeToRefs } from 'pinia'
 
 const theme = useTheme()
-const store = useScoreBoardStore()
+const scoreStore = useScoreStore()
 
-const { teams } = storeToRefs(store)
+const { teams } = storeToRefs(scoreStore)
 
 // Globally switch the admin from light to dark theme
 function toggleTheme() {
@@ -24,7 +24,7 @@ function toggleTheme() {
       <v-app-bar-title>Control</v-app-bar-title>
       <v-spacer></v-spacer>
       <template v-slot:append>
-        <v-btn-toggle v-model="store.display" mandatory variant="outlined" rounded="xl" elevation="2" color="success">
+        <v-btn-toggle v-model="scoreStore.display" mandatory variant="outlined" rounded="xl" elevation="2" color="success">
           <v-btn value="black"> Black </v-btn>
           <v-btn value="title"> Title </v-btn>
           <v-btn value="score"> Score </v-btn>
