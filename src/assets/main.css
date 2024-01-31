@@ -1,7 +1,22 @@
 @import './base.css';
+@import './fonts/fonts.css';
 
 /* Solves scrollbar issue explained here:
     https://stackoverflow.com/questions/56973002/vuetify-adds-scrollbar-when-its-not-needed */
 html {
   overflow-y: auto !important;
+}
+
+.screen {
+  h1 {
+    font-family: 'Alfa Slab One', serif;
+    /* This font should not be bold */
+    font-weight: normal;
+  }
+
+  h2 {
+    font-family: 'Lato', serif;
+    /* This font should not be bold */
+    font-weight: normal;
+  }
 }
