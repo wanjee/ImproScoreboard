@@ -8,9 +8,11 @@ const scoreStore = useScoreStore()
 </script>
 
 <template>
-  <ScreenBlack v-if="scoreStore.display === 'black'"></ScreenBlack>
-  <ScreenBoard v-if="scoreStore.display === 'score'"></ScreenBoard>
-  <ScreenTitle v-if="scoreStore.display === 'title'"></ScreenTitle>
+  <div class="screen">
+    <ScreenBlack v-if="scoreStore.display === 'black'"></ScreenBlack>
+    <ScreenBoard v-if="scoreStore.display === 'score'"></ScreenBoard>
+    <ScreenTitle v-if="scoreStore.display === 'title'"></ScreenTitle>
+  </div>
 </template>
 
 <style></style>
