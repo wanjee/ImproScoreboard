@@ -17,13 +17,23 @@ const team = getTeamByKey.value(props.teamKey)
   <v-container v-if="team">
     <v-row dense justify-center align-center>
       <v-col class="d-flex justify-end align-center pa-6">
-        <v-btn color="red" size="small" icon="mdi-minus" @click="scoreStore.decrementTeamFaults(teamKey)"></v-btn>
+        <v-btn
+          color="red-darken-2"
+          size="small"
+          icon="mdi-minus"
+          @click="scoreStore.decrementTeamFaults(teamKey)"
+        ></v-btn>
       </v-col>
       <v-col class="d-flex justify-center align-center pa-6 fault-value">
         {{ team.faults }} / {{ team.faults % 3 }}
       </v-col>
       <v-col class="d-flex justify-start align-center pa-6">
-        <v-btn color="green" size="small" icon="mdi-plus" @click="scoreStore.incrementTeamFaults(teamKey)"></v-btn>
+        <v-btn
+          color="green-darken-2"
+          size="small"
+          icon="mdi-plus"
+          @click="scoreStore.incrementTeamFaults(teamKey)"
+        ></v-btn>
       </v-col>
     </v-row>
   </v-container>
