@@ -1,10 +1,15 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useTitleScreenStore } from '@/stores/titleScreen'
+
+const titleScreenStore = useTitleScreenStore()
+</script>
 
 <template>
   <v-container fluid fill-height>
     <v-row class="d-flex justify-start align-center pa-6">
       <v-col class="d-flex flex-column justify-center align-center">
-        <h1>La Ligue d'Impro</h1>
+        <h1>{{ titleScreenStore.primaryTitle }}</h1>
+        <h2 v-if="titleScreenStore.secondaryTitle">{{ titleScreenStore.secondaryTitle }}</h2>
       </v-col>
     </v-row>
   </v-container>
