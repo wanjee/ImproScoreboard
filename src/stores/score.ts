@@ -1,21 +1,21 @@
 import { defineStore } from 'pinia'
-import type { State, teamKey } from '@/ts/types/global'
+import type { ScoreState, teamKey } from '@/ts/types/global'
 
-export const useScoreStore = defineStore('scoreBoard', {
-  state: (): State => {
+export const useScoreStore = defineStore('score', {
+  state: (): ScoreState => {
     return {
       teams: {
         teamA: {
           name: 'Team A',
           score: 0,
           faults: 0,
-          color: '#d2232a',
+          color: '#0054a6', //'#00a651',
         },
         teamB: {
           name: 'Team B',
           score: 0,
           faults: 0,
-          color: '#00a651',
+          color: '#d2232a', // '#ffff00',
         },
       },
       display: 'title',
@@ -29,7 +29,6 @@ export const useScoreStore = defineStore('scoreBoard', {
   },
   actions: {
     incrementTeamScore(key: teamKey) {
-      // FIXME find a way to get that search at a single place only
       const team = this.teams[key]
       if (team) {
         team.score++

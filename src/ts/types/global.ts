@@ -5,7 +5,7 @@ export type Team = {
   color: '#0054a6' | '#ffff00' | '#00a651' | '#d2232a'
 }
 
-export type State = {
+export type ScoreState = {
   // Everything related to team
   teams: {
     teamA: Team
@@ -18,3 +18,15 @@ export type State = {
 }
 
 export type teamKey = 'teamA' | 'teamB'
+
+export type ScreenState = {
+  primaryTitle: string
+  secondaryTitle: string
+}
+
+export type BoardScreenState = {} & ScreenState
+
+export type TitleScreenState = {
+  showLogo: boolean
+  message: string
+} & ScreenState
