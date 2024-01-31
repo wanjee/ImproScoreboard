@@ -3,6 +3,8 @@ import { useScoreStore } from '@/stores/score'
 import { useTheme } from 'vuetify'
 import ControlTeam from '@/components/control/team/ControlTeam.vue'
 import { storeToRefs } from 'pinia'
+import ControlReset from '@/components/control/reset/ControlReset.vue'
+import ControlSettings from '@/components/control/settings/ControlSettings.vue'
 
 const theme = useTheme()
 const scoreStore = useScoreStore()
@@ -19,12 +21,14 @@ function toggleTheme() {
   <v-layout>
     <v-app-bar>
       <template v-slot:prepend>
-        <v-btn icon="mdi-theme-light-dark" elevation="2" @click="toggleTheme"></v-btn>
+        <ControlSettings></ControlSettings>
+        <ControlReset></ControlReset>
+        <v-btn icon="mdi-theme-light-dark" elevation="2" @click="toggleTheme" title="Switch theme (dark/light)"></v-btn>
       </template>
-      <v-app-bar-title>Control</v-app-bar-title>
+      <v-app-bar-title>La Ligue d'Impro - Control</v-app-bar-title>
       <v-spacer></v-spacer>
       <template v-slot:append>
-        <v-btn-toggle v-model="scoreStore.display" mandatory variant="outlined" rounded="xl" elevation="2" color="success">
+        <v-btn-toggle v-model="scoreStore.display" mandatory variant="tonal" elevation="2" color="green">
           <v-btn value="black"> Black </v-btn>
           <v-btn value="title"> Title </v-btn>
           <v-btn value="score"> Score </v-btn>
@@ -51,7 +55,7 @@ function toggleTheme() {
     <v-app-bar location="bottom">
       <v-spacer></v-spacer>
       <RouterLink to="screen" title="Open main display" target="_blank">
-        <v-btn variant="outlined" elevation="2" color="success" rounded="xl">
+        <v-btn variant="tonal" elevation="2" color="green">
           Open score display
           <v-icon>mdi-open-in-new</v-icon>
         </v-btn>
