@@ -53,10 +53,6 @@ function submitSettingsForm(submitEvent: Event) {
         <v-toolbar>
           <v-btn icon="mdi-close" @click="showSettingsDialog = false"></v-btn>
           <v-toolbar-title>Settings</v-toolbar-title>
-          <v-spacer></v-spacer>
-          <v-toolbar-items>
-            <v-btn variant="text" color="success" type="submit"> Save </v-btn>
-          </v-toolbar-items>
         </v-toolbar>
         <v-container>
           <v-row dense justify-center align-center>
@@ -184,6 +180,11 @@ function submitSettingsForm(submitEvent: Event) {
             </v-col>
           </v-row>
         </v-container>
+        <v-card-actions>
+          <v-btn variant="text" @click="showSettingsDialog = false"> Cancel </v-btn>
+          <v-spacer />
+          <v-btn variant="text" color="success" type="submit"> Save </v-btn>
+        </v-card-actions>
       </v-card>
     </v-form>
   </v-dialog>
