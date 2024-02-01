@@ -23,17 +23,14 @@ const {
 const scoreStore = useScoreStore()
 const { teams } = storeToRefs(scoreStore)
 
-function submitSettingsForm() {
+function submitSettingsForm(submitEvent: Event) {
   // Commit form changes: get all input values and store them in state
-    /*
-  console.log(submitEvent.target.elements)
-  boardScreenPrimaryTitle.value = submitEvent.target.elements.boardScreenPrimaryTitle.value ?? ''
-  boardScreenSecondaryTitle.value = submitEvent.target.elements.boardScreenSecondaryTitle.value ?? ''
-  titleScreenPrimaryTitle.value = submitEvent.target.elements.titleScreenPrimaryTitle.value ?? ''
-  titleScreenSecondaryTitle.value = submitEvent.target.elements.titleScreenSecondaryTitle.value ?? ''
-  titleScreenShowLogo.value = submitEvent.target.elements.titleScreenShowLogo.value ?? ''
-  titleScreenMessage.value = submitEvent.target.elements.titleScreenMessage.value ?? ''
-*/
+  boardScreenPrimaryTitle.value = submitEvent.target?.elements.boardScreenPrimaryTitle.value ?? ''
+  boardScreenSecondaryTitle.value = submitEvent.target?.elements.boardScreenSecondaryTitle.value ?? ''
+  titleScreenPrimaryTitle.value = submitEvent.target?.elements.titleScreenPrimaryTitle.value ?? ''
+  titleScreenSecondaryTitle.value = submitEvent.target?.elements.titleScreenSecondaryTitle.value ?? ''
+  titleScreenShowLogo.value = submitEvent.target?.elements.titleScreenShowLogo.value ?? ''
+  titleScreenMessage.value = submitEvent.target?.elements.titleScreenMessage.value ?? ''
   // Then we close dialog
   showSettingsDialog.value = false
 }
@@ -67,24 +64,26 @@ function submitSettingsForm() {
           <v-list-subheader>Score screen</v-list-subheader>
           <v-list-item title="Primary title" subtitle="Prominent title displayed on score view."
             ><v-text-field
-              :value="boardScreenPrimaryTitle"
+              :model-value="boardScreenPrimaryTitle"
               name="boardScreenPrimaryTitle"
               density="compact"
               size="60"
               clearable
               label="Primary title"
+              autocomplete="off"
             ></v-text-field
           ></v-list-item>
           <v-list-item
             title="Secondary title"
             subtitle="Title of the match or other valuable info, displayed after the primary title."
             ><v-text-field
-              :value="boardScreenSecondaryTitle"
+              :model-value="boardScreenSecondaryTitle"
               name="boardScreenSecondaryTitle"
               density="compact"
               size="60"
               clearable
               label="Secondary title"
+              autocomplete="off"
             ></v-text-field
           ></v-list-item>
           <v-list-item
@@ -112,44 +111,48 @@ function submitSettingsForm() {
           <v-list-subheader>Title screen</v-list-subheader>
           <v-list-item title="Primary title" subtitle="Prominent title displayed on score view."
             ><v-text-field
-              :value="titleScreenPrimaryTitle"
+              :model-value="titleScreenPrimaryTitle"
               name="titleScreenPrimaryTitle"
               density="compact"
               size="60"
               clearable
               label="Primary title"
+              autocomplete="off"
             ></v-text-field
           ></v-list-item>
           <v-list-item
             title="Secondary title"
             subtitle="Title of the match or other valuable info, displayed after the primary title."
             ><v-text-field
-              :value="titleScreenSecondaryTitle"
+              :model-value="titleScreenSecondaryTitle"
               name="titleScreenSecondaryTitle"
               density="compact"
               size="60"
               clearable
               label="Secondary title"
+              autocomplete="off"
             ></v-text-field
           ></v-list-item>
           <v-list-item title="Display logo" subtitle="Fernand Gazou is IN DA PLACE !"
-            ><v-switch
-              :value="titleScreenShowLogo"
-              name="titleScreenShowLogo"
-              density="compact"
-              color="success"
-            ></v-switch
+            ><template v-slot:append>
+              <v-switch
+                :model-value="titleScreenShowLogo"
+                name="titleScreenShowLogo"
+                density="compact"
+                color="success"
+              ></v-switch></template
           ></v-list-item>
           <v-list-item
             title="Informative message"
             subtitle="Additional message to display on the title. e.g. 'Please shut your phone down'"
             ><v-text-field
-              :value="titleScreenMessage"
+              :model-value="titleScreenMessage"
               name="titleScreenMessage"
               density="compact"
               size="60"
               clearable
               label="Message"
+              autocomplete="off"
             ></v-text-field
           ></v-list-item>
         </v-list>
