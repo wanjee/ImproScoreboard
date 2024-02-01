@@ -37,7 +37,7 @@ function submitSettingsForm(submitEvent: Event) {
 </script>
 
 <template>
-  <v-dialog v-model="showSettingsDialog" width="auto">
+  <v-dialog v-model="showSettingsDialog" width="auto" persistent>
     <template v-slot:activator="{ props }">
       <v-btn
         icon="mdi-cog"
@@ -58,104 +58,132 @@ function submitSettingsForm(submitEvent: Event) {
             <v-btn variant="text" color="success" type="submit"> Save </v-btn>
           </v-toolbar-items>
         </v-toolbar>
+        <v-container>
+          <v-row dense justify-center align-center>
+            <v-col class="d-flex align-center">
+              <h4>Score screen</h4>
+            </v-col>
+          </v-row>
 
-        <!-- Score settings -->
-        <v-list lines="two" subheader class="overflow-visible">
-          <v-list-subheader>Score screen</v-list-subheader>
-          <v-list-item title="Primary title" subtitle="Prominent title displayed on score view."
-            ><v-text-field
-              :model-value="boardScreenPrimaryTitle"
-              name="boardScreenPrimaryTitle"
-              density="compact"
-              size="60"
-              clearable
-              label="Primary title"
-              autocomplete="off"
-            ></v-text-field
-          ></v-list-item>
-          <v-list-item
-            title="Secondary title"
-            subtitle="Title of the match or other valuable info, displayed after the primary title."
-            ><v-text-field
-              :model-value="boardScreenSecondaryTitle"
-              name="boardScreenSecondaryTitle"
-              density="compact"
-              size="60"
-              clearable
-              label="Secondary title"
-              autocomplete="off"
-            ></v-text-field
-          ></v-list-item>
-          <v-list-item
-            title="Left team color"
-            subtitle="Set the content filtering level to restrict apps that can be downloaded"
-            ><v-select
-              label="Left team color"
-              density="compact"
-              :items="['California', 'Colorado', 'Florida', 'Georgia', 'Texas', 'Wyoming']"
-            ></v-select
-          ></v-list-item>
-          <v-list-item
-            title="Right team color"
-            subtitle="Require password for purchase or use password to restrict purchase"
-            ><v-select
-              label="Right team color"
-              density="compact"
-              :items="['California', 'Colorado', 'Florida', 'Georgia', 'Texas', 'Wyoming']"
-            ></v-select
-          ></v-list-item>
-        </v-list>
-        <v-divider></v-divider>
-        <!-- Title screen settings -->
-        <v-list lines="two" subheader class="overflow-visible">
-          <v-list-subheader>Title screen</v-list-subheader>
-          <v-list-item title="Primary title" subtitle="Prominent title displayed on score view."
-            ><v-text-field
-              :model-value="titleScreenPrimaryTitle"
-              name="titleScreenPrimaryTitle"
-              density="compact"
-              size="60"
-              clearable
-              label="Primary title"
-              autocomplete="off"
-            ></v-text-field
-          ></v-list-item>
-          <v-list-item
-            title="Secondary title"
-            subtitle="Title of the match or other valuable info, displayed after the primary title."
-            ><v-text-field
-              :model-value="titleScreenSecondaryTitle"
-              name="titleScreenSecondaryTitle"
-              density="compact"
-              size="60"
-              clearable
-              label="Secondary title"
-              autocomplete="off"
-            ></v-text-field
-          ></v-list-item>
-          <v-list-item title="Display logo" subtitle="Fernand Gazou is IN DA PLACE !"
-            ><template v-slot:append>
+          <v-row dense justify-center align-center>
+            <v-col class="d-flex align-center">
+              <v-text-field
+                variant="outlined"
+                :model-value="boardScreenPrimaryTitle"
+                name="boardScreenPrimaryTitle"
+                density="compact"
+                size="60"
+                clearable
+                label="Primary title"
+                autocomplete="off"
+                hint="Prominent title displayed on score screen"
+              ></v-text-field>
+            </v-col>
+          </v-row>
+
+          <v-row dense justify-center align-center>
+            <v-col class="d-flex align-center">
+              <v-text-field
+                variant="outlined"
+                :model-value="boardScreenSecondaryTitle"
+                name="boardScreenSecondaryTitle"
+                density="compact"
+                size="60"
+                clearable
+                label="Secondary title"
+                autocomplete="off"
+                hint="Title of the match or other valuable info, displayed after the primary title"
+              ></v-text-field>
+            </v-col>
+          </v-row>
+
+          <v-row dense justify-center align-center>
+            <v-col class="d-flex align-center" cols="6">
+              <v-select
+                variant="outlined"
+                label="Left team color"
+                density="compact"
+                :items="['Red', 'Green', 'Yellow', 'Blue']"
+              ></v-select>
+            </v-col>
+            <v-col class="d-flex align-center" cols="6">
+              <v-select
+                variant="outlined"
+                label="Right team color"
+                density="compact"
+                :items="['Red', 'Green', 'Yellow', 'Blue']"
+              ></v-select>
+            </v-col>
+          </v-row>
+
+          <v-divider></v-divider>
+
+          <v-row dense justify-center align-center>
+            <v-col class="d-flex align-center">
+              <h4>Title screen</h4>
+            </v-col>
+          </v-row>
+
+          <v-row dense justify-center align-center>
+            <v-col class="d-flex align-center">
+              <v-text-field
+                variant="outlined"
+                :model-value="titleScreenPrimaryTitle"
+                name="titleScreenPrimaryTitle"
+                density="compact"
+                size="60"
+                clearable
+                label="Primary title"
+                autocomplete="off"
+                hint="Prominent title displayed on title screen."
+              ></v-text-field>
+            </v-col>
+          </v-row>
+
+          <v-row dense justify-center align-center>
+            <v-col class="d-flex align-center">
+              <v-text-field
+                variant="outlined"
+                :model-value="titleScreenSecondaryTitle"
+                name="titleScreenSecondaryTitle"
+                density="compact"
+                size="60"
+                clearable
+                label="Secondary title"
+                autocomplete="off"
+                hint="Title of the match or other valuable info, displayed after the primary title."
+              ></v-text-field>
+            </v-col>
+          </v-row>
+
+          <v-row dense justify-center align-center>
+            <v-col class="d-flex align-center">
               <v-switch
                 :model-value="titleScreenShowLogo"
                 name="titleScreenShowLogo"
+                label="Display Fernand Gazou logo"
                 density="compact"
                 color="success"
-              ></v-switch></template
-          ></v-list-item>
-          <v-list-item
-            title="Informative message"
-            subtitle="Additional message to display on the title. e.g. 'Please shut your phone down'"
-            ><v-text-field
-              :model-value="titleScreenMessage"
-              name="titleScreenMessage"
-              density="compact"
-              size="60"
-              clearable
-              label="Message"
-              autocomplete="off"
-            ></v-text-field
-          ></v-list-item>
-        </v-list>
+              ></v-switch>
+            </v-col>
+          </v-row>
+
+          <v-row dense justify-center align-center>
+            <v-col class="d-flex align-center">
+              <v-text-field
+                variant="outlined"
+                :model-value="titleScreenMessage"
+                name="titleScreenMessage"
+                density="compact"
+                size="60"
+                clearable
+                label="Message"
+                autocomplete="off"
+                hint="Additional message to display on the title. e.g. 'Please shut your phone down'"
+              ></v-text-field>
+            </v-col>
+          </v-row>
+        </v-container>
       </v-card>
     </v-form>
   </v-dialog>
