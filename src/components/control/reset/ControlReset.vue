@@ -40,7 +40,7 @@ function resetScores() {
       <v-card-actions>
         <v-btn variant="text" @click="showResetDialog = false"> Cancel </v-btn>
         <v-spacer />
-        <v-btn variant="text" color="error" type="submit"> Reset </v-btn>
+        <v-btn color="error" @click="resetScores"> Reset </v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
