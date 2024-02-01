@@ -20,7 +20,7 @@ const { teams } = storeToRefs(scoreStore)
     <v-row justify-center align-center>
       <v-col v-for="(team, key) in teams" :key="key" cols="6">
         <!--<ScreenBoardTeam :teamKey="key"></ScreenBoardTeam>-->
-        <v-card class="team" :style="{ 'background-color': team.color }">
+        <v-card class="team">
           <v-container>
             <v-row dense justify-center align-center>
               <v-col class="d-flex justify-center align-center pa-6 score-value">
