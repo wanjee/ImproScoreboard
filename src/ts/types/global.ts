@@ -1,9 +1,13 @@
+import type { colorKey } from '@/ts/constants/colors'
+
 export type Team = {
   name: string
   score: number
   faults: number
-  color: '#0054a6' | '#ffff00' | '#00a651' | '#d2232a'
+  colorKey: colorKey
 }
+
+export type displayType = 'black' | 'title' | 'score'
 
 export type ScoreState = {
   // Everything related to team
@@ -12,12 +16,12 @@ export type ScoreState = {
     teamB: Team
   }
   // One of the available display types
-  display: 'black' | 'title' | 'score'
+  display: displayType
   // In minutes
   periodDuration: number
 }
 
-export type teamKey = 'teamA' | 'teamB'
+export type teamKey = keyof ScoreState['teams']
 
 export type ScreenState = {
   primaryTitle: string
