@@ -1,36 +1,41 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useScoreStore } from '@/stores/score'
 import { useBoardScreenStore } from '@/stores/boardScreen'
 import { useTitleScreenStore } from '@/stores/titleScreen'
-import { useScoreStore } from '@/stores/score'
-import { storeToRefs } from 'pinia'
+import { colors } from '@/ts/constants/colors'
 
 // Indicates dialog is open or not
 const showSettingsDialog = ref(false)
 
-const boardScreenStore = useBoardScreenStore()
-const { primaryTitle: boardScreenPrimaryTitle, secondaryTitle: boardScreenSecondaryTitle } =
-  storeToRefs(boardScreenStore)
-
-const titleScreenStore = useTitleScreenStore()
-const {
-  primaryTitle: titleScreenPrimaryTitle,
-  secondaryTitle: titleScreenSecondaryTitle,
-  showLogo: titleScreenShowLogo,
-  message: titleScreenMessage,
-} = storeToRefs(titleScreenStore)
-
 const scoreStore = useScoreStore()
-const { teams } = storeToRefs(scoreStore)
+const boardScreenStore = useBoardScreenStore()
+const titleScreenStore = useTitleScreenStore()
 
+const colorSchemeItems = Object.values(colors)
+
+function getNamedInput(form : HTMLFormElement, inputName : string) : HTMLInputElement {
+    return form.elements.namedItem(inputName) as HTMLInputElement;
+}
+
+/**
+ * Form submission handler to copy submitted values to the shared store(s)
+ * @param submitEvent
+ */
 function submitSettingsForm(submitEvent: Event) {
+  // Ensure TS is happy with what it receives
+  const form = submitEvent.target as HTMLFormElement
+
   // Commit form changes: get all input values and store them in state
-  boardScreenPrimaryTitle.value = submitEvent.target?.elements.boardScreenPrimaryTitle.value ?? ''
-  boardScreenSecondaryTitle.value = submitEvent.target?.elements.boardScreenSecondaryTitle.value ?? ''
-  titleScreenPrimaryTitle.value = submitEvent.target?.elements.titleScreenPrimaryTitle.value ?? ''
-  titleScreenSecondaryTitle.value = submitEvent.target?.elements.titleScreenSecondaryTitle.value ?? ''
-  titleScreenShowLogo.value = submitEvent.target?.elements.titleScreenShowLogo.value ?? ''
-  titleScreenMessage.value = submitEvent.target?.elements.titleScreenMessage.value ?? ''
+  // We also need to ensure TS is happy by explicitly asserting the type of nameItem return value
+  boardScreenStore.primaryTitle = getNamedInput(form, 'boardScreenPrimaryTitle')?.value ?? '';
+  boardScreenStore.secondaryTitle = getNamedInput(form, 'boardScreenSecondaryTitle')?.value ?? '';
+
+  titleScreenStore.primaryTitle = getNamedInput(form, 'titleScreenPrimaryTitle')?.value ?? '';
+  titleScreenStore.secondaryTitle = getNamedInput(form, 'titleScreenSecondaryTitle')?.value ?? '';
+  titleScreenStore.showLogo = getNamedInput(form, 'titleScreenShowLogo')?.checked ?? false;
+  titleScreenStore.message = getNamedInput(form, 'titleScreenMessage')?.value ?? '';
+
   // Then we close dialog
   showSettingsDialog.value = false
 }
@@ -60,12 +65,42 @@ function submitSettingsForm(submitEvent: Event) {
               <h4>Score screen</h4>
             </v-col>
           </v-row>
+          <v-row dense justify-center align-center>
+            <v-col class="d-flex align-center" cols="6">
+              <v-select
+                variant="outlined"
+                :model-value="scoreStore.teams.teamA.colorKey"
+                label="Left team color"
+                density="compact"
+                :items="colorSchemeItems"
+                item-title="label"
+                item-value="value"
+              ></v-select>
+            </v-col>
+            <v-col class="d-flex align-center" cols="6">
+              <v-select
+                variant="outlined"
+                :model-value="scoreStore.teams.teamB.colorKey"
+                label="Right team color"
+                density="compact"
+                :items="colorSchemeItems"
+                item-title="label"
+                item-value="value"
+              ></v-select>
+            </v-col>
+          </v-row>
+          <v-divider></v-divider>
+          <v-row dense justify-center align-center>
+            <v-col class="d-flex align-center">
+              <h4>Score screen</h4>
+            </v-col>
+          </v-row>
 
           <v-row dense justify-center align-center>
             <v-col class="d-flex align-center">
               <v-text-field
                 variant="outlined"
-                :model-value="boardScreenPrimaryTitle"
+                :model-value="boardScreenStore.primaryTitle"
                 name="boardScreenPrimaryTitle"
                 density="compact"
                 size="60"
@@ -81,7 +116,7 @@ function submitSettingsForm(submitEvent: Event) {
             <v-col class="d-flex align-center">
               <v-text-field
                 variant="outlined"
-                :model-value="boardScreenSecondaryTitle"
+                :model-value="boardScreenStore.secondaryTitle"
                 name="boardScreenSecondaryTitle"
                 density="compact"
                 size="60"
@@ -90,25 +125,6 @@ function submitSettingsForm(submitEvent: Event) {
                 autocomplete="off"
                 hint="Title of the match or other valuable info, displayed after the primary title"
               ></v-text-field>
-            </v-col>
-          </v-row>
-
-          <v-row dense justify-center align-center>
-            <v-col class="d-flex align-center" cols="6">
-              <v-select
-                variant="outlined"
-                label="Left team color"
-                density="compact"
-                :items="['Red', 'Green', 'Yellow', 'Blue']"
-              ></v-select>
-            </v-col>
-            <v-col class="d-flex align-center" cols="6">
-              <v-select
-                variant="outlined"
-                label="Right team color"
-                density="compact"
-                :items="['Red', 'Green', 'Yellow', 'Blue']"
-              ></v-select>
             </v-col>
           </v-row>
 
@@ -124,7 +140,7 @@ function submitSettingsForm(submitEvent: Event) {
             <v-col class="d-flex align-center">
               <v-text-field
                 variant="outlined"
-                :model-value="titleScreenPrimaryTitle"
+                :model-value="titleScreenStore.primaryTitle"
                 name="titleScreenPrimaryTitle"
                 density="compact"
                 size="60"
@@ -140,7 +156,7 @@ function submitSettingsForm(submitEvent: Event) {
             <v-col class="d-flex align-center">
               <v-text-field
                 variant="outlined"
-                :model-value="titleScreenSecondaryTitle"
+                :model-value="titleScreenStore.secondaryTitle"
                 name="titleScreenSecondaryTitle"
                 density="compact"
                 size="60"
@@ -154,13 +170,13 @@ function submitSettingsForm(submitEvent: Event) {
 
           <v-row dense justify-center align-center>
             <v-col class="d-flex align-center">
-              <v-switch
-                :model-value="titleScreenShowLogo"
+              <v-checkbox
+                :model-value="titleScreenStore.showLogo"
                 name="titleScreenShowLogo"
                 label="Display Fernand Gazou logo"
                 density="compact"
                 color="success"
-              ></v-switch>
+              ></v-checkbox>
             </v-col>
           </v-row>
 
@@ -168,7 +184,7 @@ function submitSettingsForm(submitEvent: Event) {
             <v-col class="d-flex align-center">
               <v-text-field
                 variant="outlined"
-                :model-value="titleScreenMessage"
+                :model-value="titleScreenStore.message"
                 name="titleScreenMessage"
                 density="compact"
                 size="60"
