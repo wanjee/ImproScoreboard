@@ -4,6 +4,7 @@ import { useScoreStore } from '@/stores/score'
 import { storeToRefs } from 'pinia'
 import ControlTeamFaults from '@/components/control/team/faults/ControlTeamFaults.vue'
 import type { teamKey as teamKeyType } from '@/ts/types/global'
+import { colors } from '@/ts/constants/colors'
 
 const props = defineProps<{
   teamKey: teamKeyType
@@ -16,11 +17,15 @@ const team = getTeamByKey.value(props.teamKey)
 </script>
 
 <template>
-  <v-card>
+  <v-card class="control-team" :style="{ 'border-top-color': colors[team.colorKey].color }">
     <v-card-title>{{ team.name }}</v-card-title>
     <ControlTeamScore :teamKey="teamKey"></ControlTeamScore>
     <ControlTeamFaults :teamKey="teamKey"></ControlTeamFaults>
   </v-card>
 </template>
 
-<style></style>
+<style>
+.control-team {
+  border-top: 3px solid;
+}
+</style>

@@ -2,6 +2,7 @@
 import { useScoreStore } from '@/stores/score'
 import { storeToRefs } from 'pinia'
 import { useBoardScreenStore } from '@/stores/boardScreen'
+import { colors } from '@/ts/constants/colors'
 
 const scoreStore = useScoreStore()
 const boardScreenStore = useBoardScreenStore()
@@ -19,8 +20,7 @@ const { teams } = storeToRefs(scoreStore)
     </v-row>
     <v-row justify-center align-center>
       <v-col v-for="(team, key) in teams" :key="key" cols="6">
-        <!--<ScreenBoardTeam :teamKey="key"></ScreenBoardTeam>-->
-        <v-card class="team">
+        <v-card class="team" :style="{ 'border-top-color': colors[team.colorKey].color }">
           <v-container>
             <v-row dense justify-center align-center>
               <v-col class="d-flex justify-center align-center pa-6 score-value">
@@ -44,8 +44,9 @@ const { teams } = storeToRefs(scoreStore)
 
 <style scoped>
 .team {
-  background: radial-gradient(circle at center top, #000000, transparent 300px),
-    radial-gradient(circle at bottom right, #000000, transparent 400px);
+  border-top: 3px solid;
+  background: radial-gradient(ellipse at center top, #000000, transparent 400px),
+    radial-gradient(circle at bottom right, #000000, transparent 200px);
 
   .score-value {
     font-size: xxx-large;
