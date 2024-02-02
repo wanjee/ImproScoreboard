@@ -13,9 +13,7 @@ const titleScreenStore = useTitleScreenStore()
       </v-col>
     </v-row>
     <v-row v-if="titleScreenStore.showLogo" class="d-flex justify-start align-center pa-6">
-      <v-col class="d-flex flex-column justify-center align-center">
-        Logo here
-      </v-col>
+      <v-col class="d-flex flex-column justify-center align-center"> Logo here </v-col>
     </v-row>
     <v-row v-if="titleScreenStore.message" class="d-flex justify-start align-center pa-6">
       <v-col class="d-flex flex-column justify-center align-center">

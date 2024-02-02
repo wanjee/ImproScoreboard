@@ -21,8 +21,8 @@ const colorSchemeItems = Object.values(colors)
  * @param form
  * @param inputName
  */
-function getNamedInput(form : HTMLFormElement, inputName : string) : HTMLInputElement {
-    return form.elements.namedItem(inputName) as HTMLInputElement;
+function getNamedInput(form: HTMLFormElement, inputName: string): HTMLInputElement {
+  return form.elements.namedItem(inputName) as HTMLInputElement
 }
 
 /**
@@ -35,16 +35,16 @@ function submitSettingsForm(submitEvent: Event) {
 
   // Commit form changes: get all input values and store them in state
   // We also need to ensure TS is happy by explicitly asserting the type of nameItem return value
-  boardScreenStore.primaryTitle = getNamedInput(form, 'boardScreenPrimaryTitle')?.value ?? '';
-  boardScreenStore.secondaryTitle = getNamedInput(form, 'boardScreenSecondaryTitle')?.value ?? '';
+  boardScreenStore.primaryTitle = getNamedInput(form, 'boardScreenPrimaryTitle')?.value ?? ''
+  boardScreenStore.secondaryTitle = getNamedInput(form, 'boardScreenSecondaryTitle')?.value ?? ''
 
-  titleScreenStore.primaryTitle = getNamedInput(form, 'titleScreenPrimaryTitle')?.value ?? '';
-  titleScreenStore.secondaryTitle = getNamedInput(form, 'titleScreenSecondaryTitle')?.value ?? '';
-  titleScreenStore.showLogo = getNamedInput(form, 'titleScreenShowLogo')?.checked ?? false;
-  titleScreenStore.message = getNamedInput(form, 'titleScreenMessage')?.value ?? '';
+  titleScreenStore.primaryTitle = getNamedInput(form, 'titleScreenPrimaryTitle')?.value ?? ''
+  titleScreenStore.secondaryTitle = getNamedInput(form, 'titleScreenSecondaryTitle')?.value ?? ''
+  titleScreenStore.showLogo = getNamedInput(form, 'titleScreenShowLogo')?.checked ?? false
+  titleScreenStore.message = getNamedInput(form, 'titleScreenMessage')?.value ?? ''
 
-  scoreStore.teams.teamA.colorKey = getNamedInput(form, 'scoreTeamAColor')?.value as colorKey ?? '';
-  scoreStore.teams.teamB.colorKey = getNamedInput(form, 'scoreTeamBColor')?.value as colorKey ?? '';
+  scoreStore.teams.teamA.colorKey = (getNamedInput(form, 'scoreTeamAColor')?.value as colorKey) ?? ''
+  scoreStore.teams.teamB.colorKey = (getNamedInput(form, 'scoreTeamBColor')?.value as colorKey) ?? ''
 
   // Then we close dialog
   showSettingsDialog.value = false
