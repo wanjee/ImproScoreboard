@@ -4,6 +4,7 @@ import { useScoreStore } from '@/stores/score'
 import { useBoardScreenStore } from '@/stores/boardScreen'
 import { useTitleScreenStore } from '@/stores/titleScreen'
 import { colors } from '@/ts/constants/colors'
+import type { colorKey } from '@/ts/constants/colors'
 
 // Indicates dialog is open or not
 const showSettingsDialog = ref(false)
@@ -14,6 +15,12 @@ const titleScreenStore = useTitleScreenStore()
 
 const colorSchemeItems = Object.values(colors)
 
+/**
+ * Helper to retrieve an input object via its name from a given form.  It also ensures TS happiness...
+ *
+ * @param form
+ * @param inputName
+ */
 function getNamedInput(form : HTMLFormElement, inputName : string) : HTMLInputElement {
     return form.elements.namedItem(inputName) as HTMLInputElement;
 }
@@ -35,6 +42,9 @@ function submitSettingsForm(submitEvent: Event) {
   titleScreenStore.secondaryTitle = getNamedInput(form, 'titleScreenSecondaryTitle')?.value ?? '';
   titleScreenStore.showLogo = getNamedInput(form, 'titleScreenShowLogo')?.checked ?? false;
   titleScreenStore.message = getNamedInput(form, 'titleScreenMessage')?.value ?? '';
+
+  scoreStore.teams.teamA.colorKey = getNamedInput(form, 'scoreTeamAColor')?.value as colorKey ?? '';
+  scoreStore.teams.teamB.colorKey = getNamedInput(form, 'scoreTeamBColor')?.value as colorKey ?? '';
 
   // Then we close dialog
   showSettingsDialog.value = false
@@ -68,24 +78,26 @@ function submitSettingsForm(submitEvent: Event) {
           <v-row dense justify-center align-center>
             <v-col class="d-flex align-center" cols="6">
               <v-select
-                variant="outlined"
-                :model-value="scoreStore.teams.teamA.colorKey"
+                :model-value="colors[scoreStore.teams.teamA.colorKey]"
+                name="scoreTeamAColor"
                 label="Left team color"
+                variant="outlined"
                 density="compact"
                 :items="colorSchemeItems"
                 item-title="label"
-                item-value="value"
+                item-value="key"
               ></v-select>
             </v-col>
             <v-col class="d-flex align-center" cols="6">
               <v-select
-                variant="outlined"
-                :model-value="scoreStore.teams.teamB.colorKey"
+                :model-value="colors[scoreStore.teams.teamB.colorKey]"
+                name="scoreTeamBColor"
                 label="Right team color"
+                variant="outlined"
                 density="compact"
                 :items="colorSchemeItems"
                 item-title="label"
-                item-value="value"
+                item-value="key"
               ></v-select>
             </v-col>
           </v-row>
@@ -99,9 +111,9 @@ function submitSettingsForm(submitEvent: Event) {
           <v-row dense justify-center align-center>
             <v-col class="d-flex align-center">
               <v-text-field
-                variant="outlined"
                 :model-value="boardScreenStore.primaryTitle"
                 name="boardScreenPrimaryTitle"
+                variant="outlined"
                 density="compact"
                 size="60"
                 clearable
@@ -115,9 +127,9 @@ function submitSettingsForm(submitEvent: Event) {
           <v-row dense justify-center align-center>
             <v-col class="d-flex align-center">
               <v-text-field
-                variant="outlined"
                 :model-value="boardScreenStore.secondaryTitle"
                 name="boardScreenSecondaryTitle"
+                variant="outlined"
                 density="compact"
                 size="60"
                 clearable
@@ -139,9 +151,9 @@ function submitSettingsForm(submitEvent: Event) {
           <v-row dense justify-center align-center>
             <v-col class="d-flex align-center">
               <v-text-field
-                variant="outlined"
                 :model-value="titleScreenStore.primaryTitle"
                 name="titleScreenPrimaryTitle"
+                variant="outlined"
                 density="compact"
                 size="60"
                 clearable
@@ -155,9 +167,9 @@ function submitSettingsForm(submitEvent: Event) {
           <v-row dense justify-center align-center>
             <v-col class="d-flex align-center">
               <v-text-field
-                variant="outlined"
                 :model-value="titleScreenStore.secondaryTitle"
                 name="titleScreenSecondaryTitle"
+                variant="outlined"
                 density="compact"
                 size="60"
                 clearable
@@ -183,9 +195,9 @@ function submitSettingsForm(submitEvent: Event) {
           <v-row dense justify-center align-center>
             <v-col class="d-flex align-center">
               <v-text-field
-                variant="outlined"
                 :model-value="titleScreenStore.message"
                 name="titleScreenMessage"
+                variant="outlined"
                 density="compact"
                 size="60"
                 clearable
