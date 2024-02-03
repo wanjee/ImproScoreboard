@@ -34,3 +34,9 @@ export type TitleScreenState = {
   showLogo: boolean
   message: string
 } & ScreenState
+
+export type TimerState = {
+  duration: number
+  hasStarted: boolean
+  isRunning: boolean
+}
