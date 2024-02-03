@@ -5,6 +5,7 @@ import ControlTeam from '@/components/control/team/ControlTeam.vue'
 import { storeToRefs } from 'pinia'
 import ControlReset from '@/components/control/reset/ControlReset.vue'
 import ControlSettings from '@/components/control/settings/ControlSettings.vue'
+import ControlTimer from '@/components/control/timer/ControlTimer.vue'
 
 const theme = useTheme()
 const scoreStore = useScoreStore()
@@ -39,9 +40,7 @@ function toggleTheme() {
       <v-container fluid fill-height>
         <v-row>
           <v-col cols="4" offset="4" class="d-flex justify-center align-center">
-            <v-btn size="default" icon="mdi-play" color="success"></v-btn>
-            <v-btn size="default" icon="mdi-pause" color="warning"></v-btn>
-            <v-btn size="default" icon="mdi-stop" color="error"></v-btn>
+            <ControlTimer></ControlTimer>
           </v-col>
         </v-row>
         <v-row align="center">
