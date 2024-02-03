@@ -17,15 +17,11 @@ const team = getTeamByKey.value(props.teamKey)
 </script>
 
 <template>
-  <v-card class="control-team" :style="{ 'border-top-color': colors[team.colorKey].color }">
+  <v-card class="control-team" :style="{ 'border-top': '3px solid ' + colors[team.colorKey].color }">
     <v-card-title>{{ team.name }}</v-card-title>
     <ControlTeamScore :teamKey="teamKey"></ControlTeamScore>
     <ControlTeamFaults :teamKey="teamKey"></ControlTeamFaults>
   </v-card>
 </template>
 
-<style>
-.control-team {
-  border-top: 3px solid;
-}
-</style>
+<style></style>
