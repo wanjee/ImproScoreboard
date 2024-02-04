@@ -5,23 +5,16 @@ import TheTimer from '@/components/theTimer.vue'
 const timerStore = useTimerStore()
 
 function start() {
-  // Calculate expected end time
-  // Store expected end time ?
-  // Store start date
   timerStore.isRunning = true
   timerStore.hasStarted = true
 }
 
 function pause() {
   // Store remaining time until expected
-  // Clear interval
-
   timerStore.isRunning = false
 }
 
 function stop() {
-  // Clear interval
-  //
   timerStore.isRunning = false
   timerStore.hasStarted = false
 }
@@ -67,7 +60,7 @@ function submitTimerForm(submitEvent: Event) {
       <v-spacer />
       <v-btn
         size="default"
-        icon="mdi-restart"
+        icon="mdi-stop"
         color="error"
         title="Stop and reset period to it's original duration"
         @click="stop"
