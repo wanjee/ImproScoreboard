@@ -16,7 +16,7 @@ const team = getTeamByKey.value(props.teamKey)
 <template>
   <v-container v-if="team">
     <v-row dense justify-center align-center>
-      <v-col class="d-flex justify-end align-center pa-6">
+      <v-col class="d-flex justify-end align-center pa-6" cols="5">
         <v-btn
           color="red-darken-2"
           size="small"
@@ -24,10 +24,10 @@ const team = getTeamByKey.value(props.teamKey)
           @click="scoreStore.decrementTeamFaults(teamKey)"
         ></v-btn>
       </v-col>
-      <v-col class="d-flex justify-center align-center pa-6 fault-value">
+      <v-col class="d-flex justify-center align-center pa-6 fault-value" cols="2">
         {{ team.faults }} / {{ team.faults % 3 }}
       </v-col>
-      <v-col class="d-flex justify-start align-center pa-6">
+      <v-col class="d-flex justify-start align-center pa-6" cols="5">
         <v-btn
           color="green-darken-2"
           size="small"
