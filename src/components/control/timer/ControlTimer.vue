@@ -33,7 +33,7 @@ function submitTimerForm(submitEvent: Event) {
     <v-card-title>Timer</v-card-title>
     <v-container>
       <v-row dense justify-center align-center>
-        <v-col class="justify-center align-center pa-6 score-value">
+        <v-col class="d-flex justify-center align-center pa-6">
           <v-form @submit.prevent="submitTimerForm">
             <v-text-field
               :model-value="timerStore.durationInMinutes"
@@ -49,7 +49,7 @@ function submitTimerForm(submitEvent: Event) {
             <v-btn :disabled="timerStore.hasStarted" variant="outlined" color="success" type="submit"> Set </v-btn>
           </v-form>
         </v-col>
-        <v-col class="justify-center align-center pa-6 score-value">
+        <v-col class="justify-center align-center pa-6">
           <TheTimer></TheTimer>
         </v-col>
       </v-row>
