@@ -9,13 +9,13 @@ html {
 
 .screen {
   h1 {
-    font-family: 'Alfa Slab One', serif;
+    font-family: 'Alfa Slab One', sans-serif;
     /* This font should not be bold */
     font-weight: normal;
   }
 
   h2 {
-    font-family: 'Lato', serif;
+    font-family: 'Lato', sans-serif;
     /* This font should not be bold */
     font-weight: normal;
   }

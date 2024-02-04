@@ -8,11 +8,15 @@ const scoreStore = useScoreStore()
 </script>
 
 <template>
-  <div class="screen">
+  <v-container fluid class="screen flex-grow-1 d-flex flex-column flex-nowrap">
     <ScreenBlack v-if="scoreStore.display === 'black'"></ScreenBlack>
     <ScreenBoard v-if="scoreStore.display === 'score'"></ScreenBoard>
     <ScreenTitle v-if="scoreStore.display === 'title'"></ScreenTitle>
-  </div>
+  </v-container>
 </template>
 
-<style></style>
+<style>
+.screen {
+  min-height: 100vh;
+}
+</style>

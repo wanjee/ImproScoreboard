@@ -12,47 +12,99 @@ const { teams } = storeToRefs(scoreStore)
 </script>
 
 <template>
-  <v-container fluid fill-height>
-    <v-row justify-center align-center>
-      <v-col class="d-flex flex-column justify-center align-center">
-        <h1>{{ boardScreenStore.primaryTitle }}</h1>
-        <h2 v-if="boardScreenStore.secondaryTitle">{{ boardScreenStore.secondaryTitle }}</h2>
-      </v-col>
-    </v-row>
-    <v-row justify-center align-center>
-      <v-col v-for="(team, key) in teams" :key="key" cols="6">
-        <v-card class="team" :style="{ 'border-top': '3px solid ' + colors[team.colorKey].color }">
-          <v-container>
-            <v-row dense justify-center align-center>
-              <v-col class="d-flex justify-center align-center pa-6 score-value">
+  <v-row justify-center align-center class="flex-shrink-1">
+    <v-col class="d-flex flex-column justify-center align-center">
+      <h1>{{ boardScreenStore.primaryTitle }}</h1>
+      <h2 v-if="boardScreenStore.secondaryTitle">{{ boardScreenStore.secondaryTitle }}</h2>
+    </v-col>
+  </v-row>
+  <v-row justify-center align-center class="flex-grow-1">
+    <v-col v-for="(team, key) in teams" :key="key" cols="6" class="pa-10">
+      <v-card
+        class="team d-flex flex-column"
+        :class="{ team__a: key == 'teamA', team__b: key == 'teamB' }"
+        height="100%"
+        :style="{ 'background-color': colors[team.colorKey].color }"
+      >
+        <v-container height="100%">
+          <v-row dense justify-center align-center>
+            <v-col class="d-flex justify-center align-center">
+              <div class="score-value">
                 {{ team.score }}
-              </v-col>
-            </v-row>
-          </v-container>
-          <v-card-actions style="background: transparent">
-            <v-spacer></v-spacer>
-            <v-chip color="red" size="x-large">{{ team.faults }}</v-chip>
-            <v-chip color="orange" size="x-large">{{ team.faults % 3 }}</v-chip>
-          </v-card-actions>
-        </v-card>
-      </v-col>
-    </v-row>
-    <v-row justify-center align-center>
-      <v-col class="d-flex flex-column justify-center align-center">
-        <TheTimer></TheTimer>
-      </v-col>
-    </v-row>
-  </v-container>
+              </div>
+            </v-col>
+          </v-row>
+        </v-container>
+        <v-spacer></v-spacer>
+        <v-card-actions class="faults-actions">
+          <v-spacer v-if="key == 'teamB'"></v-spacer>
+          <div class="faults-wrapper">
+            <v-chip class="faults-value faults-value__total" variant="tonal" size="x-large">{{
+              team.faults
+            }}</v-chip>
+            <v-chip class="faults-value faults-value__partial" variant="tonal" size="x-large">{{
+              team.faults % 3
+            }}</v-chip>
+          </div>
+          <v-spacer v-if="key == 'teamA'"></v-spacer>
+        </v-card-actions>
+      </v-card>
+    </v-col>
+  </v-row>
+  <v-row justify-center align-center class="flex-shrink-1">
+    <v-col class="d-flex flex-column align-center">
+      <TheTimer></TheTimer>
+    </v-col>
+  </v-row>
 </template>
 
 <style scoped>
 .team {
-  background: radial-gradient(ellipse at center top, #000000, transparent 400px),
-    radial-gradient(circle at bottom right, #000000, transparent 200px);
+  font-family: 'Lato', sans-serif;
+  /* box-shadow: inset 0 0 10px black, inset 0 0 20px white; */
 
   .score-value {
-    font-size: xxx-large;
+    font-size: 10rem;
+    text-shadow:
+      3px 3px 10px black,
+      0 0 40px white,
+      0 0 60px black;
     font-weight: bold;
+  }
+
+  .faults-actions {
+    margin: 0;
+    padding: 0;
+    align-items: end;
+    .faults-wrapper {
+      padding: 3px;
+      border-radius: 4px 0 0 0;
+      background-color: rgba(94, 94, 94, 0.5);
+      display: flex;
+      flex-direction: row;
+
+      .faults-value {
+        font-size: 1.75rem;
+        font-weight: bolder;
+        background-color: #333333;
+        margin: 0 10px;
+
+        &.faults-value__total {
+          color: red;
+        }
+
+        &.faults-value__partial {
+          color: orange;
+        }
+      }
+    }
+  }
+
+  &.team__a {
+    .faults-wrapper {
+      border-radius: 0 4px 0 0;
+      flex-direction: row-reverse;
+    }
   }
 }
 </style>
