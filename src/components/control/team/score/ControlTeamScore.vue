@@ -17,7 +17,12 @@ const team = getTeamByKey.value(props.teamKey)
   <v-container>
     <v-row dense justify-center align-center>
       <v-col class="d-flex justify-end align-center pa-6" cols="5">
-        <v-btn color="red-darken-2" icon="mdi-minus" @click="scoreStore.decrementTeamScore(teamKey)"></v-btn>
+        <v-btn
+          color="red-darken-2"
+          icon="mdi-minus"
+          :disabled="team.score <= 0"
+          @click="scoreStore.decrementTeamScore(teamKey)"
+        ></v-btn>
       </v-col>
       <v-col class="d-flex justify-center align-center pa-6 score-display" cols="2">
         {{ team.score }}

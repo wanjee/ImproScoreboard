@@ -21,6 +21,7 @@ const team = getTeamByKey.value(props.teamKey)
           color="red-darken-2"
           size="small"
           icon="mdi-minus"
+          :disabled="team.faults <= 0"
           @click="scoreStore.decrementTeamFaults(teamKey)"
         ></v-btn>
       </v-col>
