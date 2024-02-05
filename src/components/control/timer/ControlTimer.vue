@@ -46,7 +46,9 @@ function submitTimerForm(submitEvent: Event) {
               autocomplete="off"
               :disabled="timerStore.hasStarted"
             ></v-text-field>
-            <v-btn :disabled="timerStore.hasStarted" variant="outlined" color="green-darken-2" type="submit"> Set </v-btn>
+            <v-btn :disabled="timerStore.hasStarted" variant="outlined" color="green-darken-2" type="submit">
+              Set
+            </v-btn>
           </v-form>
         </v-col>
         <v-col class="justify-center align-center pa-6">
