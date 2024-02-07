@@ -26,8 +26,9 @@ const { teams } = storeToRefs(scoreStore)
         height="100%"
         :style="{ 'background-color': colors[team.colorKey].color }"
       >
-        <v-container height="100%">
-          <v-row dense justify-center align-center>
+        <v-spacer></v-spacer>
+        <v-container>
+          <v-row>
             <v-col class="d-flex justify-center align-center">
               <div class="score-value">
                 {{ team.score }}
@@ -39,8 +40,8 @@ const { teams } = storeToRefs(scoreStore)
         <v-card-actions class="faults-actions">
           <v-spacer v-if="key == 'teamB'"></v-spacer>
           <div class="faults-wrapper">
-            <v-chip class="faults-value faults-value__total" variant="tonal" size="large">{{ team.faults }}</v-chip>
-            <v-chip class="faults-value faults-value__partial" variant="tonal" size="large">{{
+            <v-chip class="faults-value faults-value__total" variant="outlined" size="large">{{ team.faults }}</v-chip>
+            <v-chip class="faults-value faults-value__partial" variant="outlined" size="large">{{
               team.faults % 3
             }}</v-chip>
           </div>
@@ -58,11 +59,11 @@ const { teams } = storeToRefs(scoreStore)
 
 <style scoped>
 .team {
-  font-family: 'Lato', sans-serif;
-  /* box-shadow: inset 0 0 10px black, inset 0 0 20px white; */
+  font-family: 'E1234', sans-serif;
+  position: relative;
 
   .score-value {
-    font-size: 10rem;
+    font-size: 20vh;
     text-shadow:
       3px 3px 10px black,
       0 0 40px white,
@@ -71,20 +72,21 @@ const { teams } = storeToRefs(scoreStore)
   }
 
   .faults-actions {
+    position: absolute;
+    bottom: 0;
     margin: 0;
     padding: 0;
     align-items: end;
 
     .faults-wrapper {
       padding: 3px;
-      border-radius: 4px 0 0 0;
       background-color: rgba(94, 94, 94, 0.5);
       display: flex;
       flex-direction: row;
 
       .faults-value {
         margin: 0 4px;
-        font-size: 1.75rem;
+        font-size: 3vh;
         font-weight: bolder;
         background-color: #333333;
 
@@ -100,9 +102,22 @@ const { teams } = storeToRefs(scoreStore)
   }
 
   &.team__a {
-    .faults-wrapper {
-      border-radius: 0 4px 0 0;
-      flex-direction: row-reverse;
+    .faults-actions {
+      left: 0;
+      .faults-wrapper {
+        border-radius: 0 4px 0 0;
+        flex-direction: row-reverse;
+      }
+    }
+  }
+
+  &.team__b {
+    .faults-actions {
+      right: 0;
+      .faults-wrapper {
+        border-radius: 4px 0 0 0;
+        flex-direction: row;
+      }
     }
   }
 }

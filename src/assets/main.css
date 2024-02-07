@@ -12,11 +12,13 @@ html {
     font-family: 'Alfa Slab One', sans-serif;
     /* This font should not be bold */
     font-weight: normal;
+    font-size: 7.5vh;
   }
 
   h2 {
     font-family: 'Lato', sans-serif;
     /* This font should not be bold */
     font-weight: normal;
+    font-size: 5vh;
   }
 }

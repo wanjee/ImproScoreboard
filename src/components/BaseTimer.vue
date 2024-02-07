@@ -138,7 +138,7 @@ onBeforeUnmount(() => {
   background: #5e5e5e;
   border-radius: 4px;
   display: grid;
-  font-size: 3rem;
+  font-size: 5vh;
   font-variant-numeric: tabular-nums;
   font-weight: bold;
   gap: 10px;
