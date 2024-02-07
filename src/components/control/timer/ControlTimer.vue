@@ -1,30 +1,81 @@
 <script setup lang="ts">
 import { useTimerStore } from '@/stores/timer'
-import TheTimer from '@/components/theTimer.vue'
+import BaseTimer from '@/components/BaseTimer.vue'
+import getRemainingTime from '@/ts/utilities/getRemainingTime'
+import { ref } from 'vue'
 
 const timerStore = useTimerStore()
 
+const isFormValid = ref(false)
+
+/**
+ * This component has all controls for BaseTimer, it updates shared state
+ * so that BaseTimer can react to it to display the remaining time.
+ */
+
+/**
+ * Click on start button
+ *
+ * Start timer for initial duration or resume for remaining time
+ */
 function start() {
+  // Refresh startTime because that from there that we need to calculate remaining time
+  timerStore.startTime = Date.now()
+  // Obviously it's not paused or stopped anymore
   timerStore.isRunning = true
-  timerStore.hasStarted = true
+
+  // If there is no remaining time (e.g. we hit stop button) we get the remaining time
+  // from configured duration
+  if (timerStore.remaining == 0) {
+    timerStore.remaining = timerStore.duration
+  }
 }
 
+/**
+ * Click on pause button
+ *
+ * Pause timer and calculate remaining time to allow later resume
+ */
 function pause() {
-  // Store remaining time until expected
+  // Store remaining time, so we can resume timer display to the correct value
+  timerStore.remaining = getRemainingTime(timerStore.startTime, timerStore.remaining)
   timerStore.isRunning = false
 }
 
+/**
+ * Click on stop button
+ *
+ * Reinitialise everything, it will also enable back the configuration form
+ */
 function stop() {
+  timerStore.startTime = 0
+  timerStore.remaining = 0
   timerStore.isRunning = false
-  timerStore.hasStarted = false
 }
 
+/** Validation rules for the duration field */
+const rules = {
+  required: (value: string) => !!value || 'Required',
+  isNumber: (value: string) => {
+    // Use '+value' to try to convert string to number first
+    return (Number(+value) && +value > 0) || 'Must be a positive number'
+  },
+}
+
+/**
+ * Update timer configuration (initial duration)
+ * @param submitEvent
+ */
 function submitTimerForm(submitEvent: Event) {
-  // Ensure TS is happy with what it receives
   const form = submitEvent.target as HTMLFormElement
   const durationInput = form.elements.namedItem('duration') as HTMLInputElement
 
-  timerStore.duration = Number(durationInput.value) * 60
+  // Minutes to milliseconds
+  timerStore.setDurationFromMinutes(Number(durationInput.value))
+  // Store resetTime to have something we can watch that will always change when
+  // form is submitted, even if configuration is strictly the same.  This allows restart of
+  // a new period with identical time (which will be the most common use case)
+  timerStore.resetTime = Date.now()
 }
 </script>
 
@@ -34,7 +85,7 @@ function submitTimerForm(submitEvent: Event) {
     <v-container>
       <v-row dense justify-center align-center>
         <v-col class="d-flex justify-center align-center pa-6">
-          <v-form @submit.prevent="submitTimerForm">
+          <v-form fast-fail v-model="isFormValid" @submit.prevent="submitTimerForm">
             <v-text-field
               :model-value="timerStore.durationInMinutes"
               name="duration"
@@ -44,15 +95,21 @@ function submitTimerForm(submitEvent: Event) {
               suffix="Minutes"
               label="Period duration"
               autocomplete="off"
-              :disabled="timerStore.hasStarted"
+              :disabled="timerStore.startTime > 0"
+              :rules="[rules.required, rules.isNumber]"
             ></v-text-field>
-            <v-btn :disabled="timerStore.hasStarted" variant="outlined" color="green-darken-2" type="submit">
-              Set
+            <v-btn
+              :disabled="timerStore.startTime > 0 || !isFormValid"
+              variant="outlined"
+              color="green-darken-2"
+              type="submit"
+            >
+              Set timer
             </v-btn>
           </v-form>
         </v-col>
         <v-col class="justify-center align-center pa-6">
-          <TheTimer></TheTimer>
+          <BaseTimer></BaseTimer>
         </v-col>
       </v-row>
     </v-container>

@@ -37,6 +37,8 @@ export type TitleScreenState = {
 
 export type TimerState = {
   duration: number
-  hasStarted: boolean
+  remaining: number
+  startTime: number
   isRunning: boolean
+  resetTime: number
 }

@@ -3,7 +3,7 @@ import { useScoreStore } from '@/stores/score'
 import { storeToRefs } from 'pinia'
 import { useBoardScreenStore } from '@/stores/boardScreen'
 import { colors } from '@/ts/constants/colors'
-import TheTimer from '@/components/theTimer.vue'
+import BaseTimer from '@/components/BaseTimer.vue'
 
 const scoreStore = useScoreStore()
 const boardScreenStore = useBoardScreenStore()
@@ -51,7 +51,7 @@ const { teams } = storeToRefs(scoreStore)
   </v-row>
   <v-row justify-center align-center class="flex-shrink-1">
     <v-col class="d-flex flex-column align-center">
-      <TheTimer></TheTimer>
+      <BaseTimer></BaseTimer>
     </v-col>
   </v-row>
 </template>
