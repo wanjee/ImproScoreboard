@@ -14,7 +14,7 @@ export const colors = {
   yellow: {
     key: 'yellow',
     label: 'Yellow',
-    color: '#ffff00',
+    color: '#fdcb3f',
   },
   green: {
     key: 'green',
