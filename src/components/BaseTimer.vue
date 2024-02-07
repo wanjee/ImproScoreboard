@@ -26,8 +26,8 @@ const remainingTime = ref(timerStore.remaining || timerStore.duration)
  */
 const hours = computed(() => {
   const date = new Date(remainingTime.value)
-
-  return padNumber(date.getHours())
+  // Use UTCHours to bypass any timezone issue
+  return padNumber(date.getUTCHours())
 })
 /**
  * Update minutes in display from remaining time
@@ -133,6 +133,8 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .clock {
+  font-family: 'E1234', sans-serif;
+
   background: #5e5e5e;
   border-radius: 4px;
   display: grid;
