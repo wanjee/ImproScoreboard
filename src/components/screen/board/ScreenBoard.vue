@@ -19,7 +19,7 @@ const { teams } = storeToRefs(scoreStore)
     </v-col>
   </v-row>
   <v-row justify-center align-center class="flex-grow-1">
-    <v-col v-for="(team, key) in teams" :key="key" cols="6" class="pa-10">
+    <v-col v-for="(team, key) in teams" :key="key" cols="6" class="pa-10 pt-0">
       <v-card
         class="team d-flex flex-column"
         :class="{ team__a: key == 'teamA', team__b: key == 'teamB' }"
@@ -40,10 +40,8 @@ const { teams } = storeToRefs(scoreStore)
         <v-card-actions class="faults-actions">
           <v-spacer v-if="key == 'teamB'"></v-spacer>
           <div class="faults-wrapper">
-            <v-chip class="faults-value faults-value__total" variant="outlined" size="large">{{ team.faults }}</v-chip>
-            <v-chip class="faults-value faults-value__partial" variant="outlined" size="large">{{
-              team.faults % 3
-            }}</v-chip>
+            <v-avatar class="faults-value faults-value__total" >{{ team.faults }}</v-avatar>
+            <v-avatar class="faults-value faults-value__partial" >{{ team.faults % 3 }}</v-avatar>
           </div>
           <v-spacer v-if="key == 'teamA'"></v-spacer>
         </v-card-actions>
@@ -65,7 +63,7 @@ const { teams } = storeToRefs(scoreStore)
   .score-value {
     font-size: 20vh;
     text-shadow:
-      3px 3px 10px black,
+      0px 3px 10px black,
       0 0 40px white,
       0 0 60px black;
     font-weight: bold;
@@ -80,15 +78,14 @@ const { teams } = storeToRefs(scoreStore)
 
     .faults-wrapper {
       padding: 3px;
-      background-color: rgba(94, 94, 94, 0.5);
       display: flex;
       flex-direction: row;
 
       .faults-value {
-        margin: 0 4px;
+        background-color: rgba(51, 51, 51, 0.70);
+        margin: 0 4px 4px;
         font-size: 3vh;
         font-weight: bolder;
-        background-color: #333333;
 
         &.faults-value__total {
           color: red;
