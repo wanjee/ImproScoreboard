@@ -5,14 +5,14 @@ export const useScoreStore = defineStore('score', {
   state: (): ScoreState => {
     return {
       teams: {
-        teamA: {
-          name: 'Team A',
+        left: {
+          name: 'Left',
           score: 0,
           faults: 0,
           colorKey: 'blue',
         },
-        teamB: {
-          name: 'Team B',
+        right: {
+          name: 'Right',
           score: 0,
           faults: 0,
           colorKey: 'red',

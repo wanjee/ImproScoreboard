@@ -43,8 +43,8 @@ function submitSettingsForm(submitEvent: Event) {
   titleScreenStore.showLogo = getNamedInput(form, 'titleScreenShowLogo')?.checked ?? false
   titleScreenStore.message = getNamedInput(form, 'titleScreenMessage')?.value ?? ''
 
-  scoreStore.teams.teamA.colorKey = (getNamedInput(form, 'scoreTeamAColor')?.value as colorKey) ?? ''
-  scoreStore.teams.teamB.colorKey = (getNamedInput(form, 'scoreTeamBColor')?.value as colorKey) ?? ''
+  scoreStore.teams.left.colorKey = (getNamedInput(form, 'scoreLeftColor')?.value as colorKey) ?? ''
+  scoreStore.teams.right.colorKey = (getNamedInput(form, 'scoreRightColor')?.value as colorKey) ?? ''
 
   // Then we close dialog
   showSettingsDialog.value = false
@@ -78,8 +78,8 @@ function submitSettingsForm(submitEvent: Event) {
           <v-row dense justify-center align-center>
             <v-col class="d-flex align-center" cols="6">
               <v-select
-                :model-value="colors[scoreStore.teams.teamA.colorKey]"
-                name="scoreTeamAColor"
+                :model-value="colors[scoreStore.teams.left.colorKey]"
+                name="scoreLeftColor"
                 label="Left team color"
                 variant="outlined"
                 density="compact"
@@ -90,8 +90,8 @@ function submitSettingsForm(submitEvent: Event) {
             </v-col>
             <v-col class="d-flex align-center" cols="6">
               <v-select
-                :model-value="colors[scoreStore.teams.teamB.colorKey]"
-                name="scoreTeamBColor"
+                :model-value="colors[scoreStore.teams.right.colorKey]"
+                name="scoreRightColor"
                 label="Right team color"
                 variant="outlined"
                 density="compact"

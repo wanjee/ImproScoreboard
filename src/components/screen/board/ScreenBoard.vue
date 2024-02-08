@@ -22,7 +22,7 @@ const { teams } = storeToRefs(scoreStore)
     <v-col v-for="(team, key) in teams" :key="key" cols="6" class="pa-10 pt-0">
       <v-card
         class="team d-flex flex-column"
-        :class="{ team__a: key == 'teamA', team__b: key == 'teamB' }"
+        :class="{ team__left: key == 'left', team__right: key == 'right' }"
         height="100%"
         :style="{ 'background-color': colors[team.colorKey].color }"
       >
@@ -38,12 +38,12 @@ const { teams } = storeToRefs(scoreStore)
         </v-container>
         <v-spacer></v-spacer>
         <v-card-actions class="faults-actions">
-          <v-spacer v-if="key == 'teamB'"></v-spacer>
+          <v-spacer v-if="key == 'right'"></v-spacer>
           <div class="faults-wrapper">
             <v-avatar class="faults-value faults-value__total">{{ team.faults }}</v-avatar>
             <v-avatar class="faults-value faults-value__partial">{{ team.faults % 3 }}</v-avatar>
           </div>
-          <v-spacer v-if="key == 'teamA'"></v-spacer>
+          <v-spacer v-if="key == 'left'"></v-spacer>
         </v-card-actions>
       </v-card>
     </v-col>
@@ -98,7 +98,7 @@ const { teams } = storeToRefs(scoreStore)
     }
   }
 
-  &.team__a {
+  &.team__left {
     .faults-actions {
       left: 0;
       .faults-wrapper {
@@ -108,7 +108,7 @@ const { teams } = storeToRefs(scoreStore)
     }
   }
 
-  &.team__b {
+  &.team__right {
     .faults-actions {
       right: 0;
       .faults-wrapper {

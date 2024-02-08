@@ -8,10 +8,10 @@ const showResetDialog = ref(false)
 const scoreStore = useScoreStore()
 
 function resetScores() {
-  scoreStore.teams['teamA'].score = 0
-  scoreStore.teams['teamA'].faults = 0
-  scoreStore.teams['teamB'].score = 0
-  scoreStore.teams['teamB'].faults = 0
+  scoreStore.teams['left'].score = 0
+  scoreStore.teams['left'].faults = 0
+  scoreStore.teams['right'].score = 0
+  scoreStore.teams['right'].faults = 0
 
   showResetDialog.value = false
 }

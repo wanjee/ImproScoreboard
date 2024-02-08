@@ -12,8 +12,8 @@ export type displayType = 'black' | 'title' | 'score'
 export type ScoreState = {
   // Everything related to team
   teams: {
-    teamA: Team
-    teamB: Team
+    left: Team
+    right: Team
   }
   // One of the available display types
   display: displayType
