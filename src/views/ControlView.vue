@@ -30,15 +30,13 @@ const { teams } = storeToRefs(scoreStore)
     </v-app-bar>
     <v-main>
       <v-container fluid fill-height>
-        <v-row justify-center align-center class="flex-shrink-1">
-          <v-spacer></v-spacer>
-          <v-col cols="6" class="d-flex justify-center align-center">
+        <v-row justify="center" align="center" class="flex-shrink-1">
+          <v-col class="d-flex justify-center align-center">
             <ControlTimer></ControlTimer>
           </v-col>
-          <v-spacer></v-spacer>
         </v-row>
-        <v-row justify-center align-center class="flex-grow-1">
-          <v-col v-for="(team, key) in teams" :key="key" cols="6">
+        <v-row justify="center" align="center" class="flex-grow-1">
+          <v-col v-for="(team, key) in teams" :key="key" cols="12" sm="12" md="6" lg="6" xl="6" xxl="6">
             <ControlTeam :teamKey="key"></ControlTeam>
           </v-col>
         </v-row>

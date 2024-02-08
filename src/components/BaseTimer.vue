@@ -153,6 +153,9 @@ onBeforeUnmount(() => {
     padding: 0 5px;
     text-align: center;
     width: auto;
+    text-shadow:
+      0 0 2px black,
+      0 0 2px white;
   }
 }
 </style>

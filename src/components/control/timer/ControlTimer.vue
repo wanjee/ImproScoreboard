@@ -81,11 +81,13 @@ function submitTimerForm(submitEvent: Event) {
 
 <template>
   <v-card>
-    <v-card-title>Timer</v-card-title>
     <v-container>
       <v-row dense justify-center align-center>
+        <v-col class="justify-center align-center pa-6">
+          <BaseTimer></BaseTimer>
+        </v-col>
         <v-col class="d-flex justify-center align-center pa-6">
-          <v-form fast-fail v-model="isFormValid" @submit.prevent="submitTimerForm">
+          <v-form class="d-flex flex-column justify-center align-center" fast-fail v-model="isFormValid" @submit.prevent="submitTimerForm">
             <v-text-field
               :model-value="timerStore.durationInMinutes"
               name="duration"
@@ -108,16 +110,14 @@ function submitTimerForm(submitEvent: Event) {
             </v-btn>
           </v-form>
         </v-col>
-        <v-col class="justify-center align-center pa-6">
-          <BaseTimer></BaseTimer>
-        </v-col>
       </v-row>
     </v-container>
     <v-card-actions>
-      <v-btn v-if="!timerStore.isRunning" size="default" icon="mdi-play" color="green-darken-2" @click="start"></v-btn>
-      <v-btn v-if="timerStore.isRunning" size="default" icon="mdi-pause" color="orange-darken-2" @click="pause"></v-btn>
+      <v-btn v-if="!timerStore.isRunning" variant="outlined" size="default" icon="mdi-play" color="green-darken-2" @click="start"></v-btn>
+      <v-btn v-if="timerStore.isRunning" variant="outlined" size="default" icon="mdi-pause" color="orange-darken-2" @click="pause"></v-btn>
       <v-spacer />
       <v-btn
+        variant="outlined"
         size="default"
         icon="mdi-stop"
         color="red-darken-2"
