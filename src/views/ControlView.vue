@@ -47,7 +47,7 @@ const { teams } = storeToRefs(scoreStore)
       <v-spacer></v-spacer>
       <RouterLink to="screen" title="Open main display" target="_blank">
         <v-btn variant="tonal" elevation="2" color="green">
-          Open score display
+          Open public display
           <v-icon>mdi-open-in-new</v-icon>
         </v-btn>
       </RouterLink>
