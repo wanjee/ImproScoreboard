@@ -44,8 +44,8 @@ const { teams } = storeToRefs(scoreStore)
         <v-card-actions class="faults-actions">
           <v-spacer v-if="key == 'right'"></v-spacer>
           <div class="faults-wrapper">
-            <v-avatar class="faults-value faults-value__total">{{ team.faults }}</v-avatar>
-            <v-avatar class="faults-value faults-value__partial">{{ team.faults % 3 }}</v-avatar>
+            <span class="faults-value faults-value__total">{{ team.faults }}</span>
+            <span class="faults-value faults-value__partial">{{ team.faults % 3 }}</span>
           </div>
           <v-spacer v-if="key == 'left'"></v-spacer>
         </v-card-actions>
@@ -95,13 +95,12 @@ const { teams } = storeToRefs(scoreStore)
     align-items: end;
 
     .faults-wrapper {
-      padding: 3px;
       display: flex;
       flex-direction: row;
+      background-color: rgba(51, 51, 51, 0.7);
 
       .faults-value {
-        background-color: rgba(51, 51, 51, 0.7);
-        margin: 0 4px 4px;
+        margin: 0 4px;
         font-size: 3vh;
         font-weight: bolder;
 
