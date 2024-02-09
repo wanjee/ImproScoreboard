@@ -31,7 +31,11 @@ const { teams } = storeToRefs(scoreStore)
           <v-row>
             <v-col class="d-flex justify-center align-center">
               <div class="score-value">
-                {{ team.score }}
+                <Transition name="score-update" mode="out-in">
+                  <div :key="team.score">
+                    {{ team.score }}
+                  </div>
+                </Transition>
               </div>
             </v-col>
           </v-row>
@@ -63,10 +67,24 @@ const { teams } = storeToRefs(scoreStore)
   .score-value {
     font-size: 20vh;
     text-shadow:
-      0px 3px 10px black,
+      0 3px 10px black,
       0 0 40px white,
       0 0 60px black;
     font-weight: bold;
+
+    .score-update-enter-active {
+      transition: all 0.3s ease;
+    }
+
+    .score-update-leave-active {
+      transition: all 0.3s ease;
+    }
+
+    .score-update-enter-from,
+    .score-update-leave-to {
+      transform: scale(1.1);
+      opacity: 0;
+    }
   }
 
   .faults-actions {
