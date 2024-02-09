@@ -76,6 +76,11 @@ function submitSettingsForm(submitEvent: Event) {
             </v-col>
           </v-row>
           <v-row dense justify-center align-center>
+            <v-col class="d-flex align-center">
+              <h5>Teams</h5>
+            </v-col>
+          </v-row>
+          <v-row dense justify-center align-center>
             <v-col class="d-flex align-center" cols="6">
               <v-select
                 :model-value="colors[scoreStore.teams.left.colorKey]"
@@ -101,10 +106,9 @@ function submitSettingsForm(submitEvent: Event) {
               ></v-select>
             </v-col>
           </v-row>
-          <v-divider></v-divider>
           <v-row dense justify-center align-center>
             <v-col class="d-flex align-center">
-              <h4>Score screen</h4>
+              <h5>Content</h5>
             </v-col>
           </v-row>
 
@@ -140,11 +144,16 @@ function submitSettingsForm(submitEvent: Event) {
             </v-col>
           </v-row>
 
-          <v-divider></v-divider>
+          <v-divider thickness="1" class="mb-4"></v-divider>
 
           <v-row dense justify-center align-center>
             <v-col class="d-flex align-center">
               <h4>Title screen</h4>
+            </v-col>
+          </v-row>
+          <v-row dense justify-center align-center>
+            <v-col class="d-flex align-center">
+              <h5>Content</h5>
             </v-col>
           </v-row>
 
