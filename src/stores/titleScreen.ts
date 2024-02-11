@@ -6,7 +6,7 @@ export const useTitleScreenStore = defineStore('titleScreen', {
     return {
       primaryTitle: "La Ligue d'Impro",
       secondaryTitle: '🔞 Match No Limit 🔞',
-      showLogo: true,
+      logoKey: 'fernand40',
       message: 'www.ligueimpro.be',
     }
   },

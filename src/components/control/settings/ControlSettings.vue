@@ -5,6 +5,8 @@ import { useBoardScreenStore } from '@/stores/boardScreen'
 import { useTitleScreenStore } from '@/stores/titleScreen'
 import { colors } from '@/ts/constants/colors'
 import type { colorKey } from '@/ts/constants/colors'
+import { logos } from '@/ts/constants/logos'
+import type { logoKey } from '@/ts/constants/logos'
 
 // Indicates dialog is open or not
 const showSettingsDialog = ref(false)
@@ -14,6 +16,7 @@ const boardScreenStore = useBoardScreenStore()
 const titleScreenStore = useTitleScreenStore()
 
 const colorSchemeItems = Object.values(colors)
+const logosItems = Object.values(logos)
 
 /**
  * Helper to retrieve an input object via its name from a given form.  It also ensures TS happiness...
@@ -40,9 +43,9 @@ function submitSettingsForm(submitEvent: Event) {
 
   titleScreenStore.primaryTitle = getNamedInput(form, 'titleScreenPrimaryTitle')?.value ?? ''
   titleScreenStore.secondaryTitle = getNamedInput(form, 'titleScreenSecondaryTitle')?.value ?? ''
-  titleScreenStore.showLogo = getNamedInput(form, 'titleScreenShowLogo')?.checked ?? false
-  titleScreenStore.message = getNamedInput(form, 'titleScreenMessage')?.value ?? ''
-
+  titleScreenStore.logoKey = (getNamedInput(form, 'titleScreenLogo')?.value as logoKey) ?? ''
+  titleScreenStore.message = (getNamedInput(form, 'titleScreenMessage')?.value as logoKey) ?? ''
+  console.log(getNamedInput(form, 'titleScreenLogo')?.value)
   scoreStore.teams.left.colorKey = (getNamedInput(form, 'scoreLeftColor')?.value as colorKey) ?? ''
   scoreStore.teams.right.colorKey = (getNamedInput(form, 'scoreRightColor')?.value as colorKey) ?? ''
 
@@ -191,13 +194,17 @@ function submitSettingsForm(submitEvent: Event) {
 
           <v-row dense justify-center align-center>
             <v-col class="d-flex align-center">
-              <v-checkbox
-                :model-value="titleScreenStore.showLogo"
-                name="titleScreenShowLogo"
-                label="Display Fernand Gazou logo"
+              <v-select
+                :model-value="logos[titleScreenStore.logoKey]"
+                name="titleScreenLogo"
+                label="Logo"
+                variant="outlined"
                 density="compact"
-                color="success"
-              ></v-checkbox>
+                :items="logosItems"
+                item-title="label"
+                item-value="key"
+                clearable
+              ></v-select>
             </v-col>
           </v-row>
 

@@ -1,8 +1,8 @@
 export type color = {
   key: colorKey
-  label: 'string'
+  label: string
   // Can be any CSS supported color: hexa, rgb, hsl, color name,...
-  color: 'string'
+  color: string
 }
 
 export const colors = {

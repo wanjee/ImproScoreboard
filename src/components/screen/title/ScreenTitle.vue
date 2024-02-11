@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useTitleScreenStore } from '@/stores/titleScreen'
+import { logos } from '@/ts/constants/logos'
 
 const titleScreenStore = useTitleScreenStore()
 </script>
@@ -12,8 +13,8 @@ const titleScreenStore = useTitleScreenStore()
     </v-col>
   </v-row>
   <v-row justify-center align-center class="flex-grow-1">
-    <v-col v-if="titleScreenStore.showLogo" class="d-flex flex-column justify-center align-center">
-      <v-img :width="300" aspect-ratio="1/1" src="./img/fernand.png"></v-img>
+    <v-col v-if="titleScreenStore.logoKey" class="d-flex flex-column justify-center align-center">
+      <img class="logo" :src="'./img/' + logos[titleScreenStore.logoKey].filename" alt="" />
     </v-col>
   </v-row>
   <v-row justify-center align-center class="flex-shrink-1">
@@ -23,4 +24,9 @@ const titleScreenStore = useTitleScreenStore()
   </v-row>
 </template>
 
-<style scoped></style>
+<style scoped>
+.logo {
+  max-height: 50vh;
+  width: auto;
+}
+</style>

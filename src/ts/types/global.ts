@@ -1,4 +1,5 @@
 import type { colorKey } from '@/ts/constants/colors'
+import type { logoKey } from '@/ts/constants/logos'
 
 export type Team = {
   name: string
@@ -31,7 +32,7 @@ export type ScreenState = {
 export type BoardScreenState = {} & ScreenState
 
 export type TitleScreenState = {
-  showLogo: boolean
+  logoKey: logoKey
   message: string
 } & ScreenState
 
