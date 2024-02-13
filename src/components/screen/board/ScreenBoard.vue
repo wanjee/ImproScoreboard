@@ -45,7 +45,11 @@ const { teams } = storeToRefs(scoreStore)
           <v-spacer v-if="key == 'right'"></v-spacer>
           <div class="faults-wrapper">
             <span class="faults-value faults-value__total">{{ team.faults }}</span>
-            <span class="faults-value faults-value__partial">{{ team.faults % 3 }}</span>
+            <span class="faults-value faults-value__partial">
+              <v-icon icon="mdi-circle-medium" :class="{ active: team.faultsPartial >= 1 }"></v-icon>
+              <v-icon icon="mdi-circle-medium" :class="{ active: team.faultsPartial >= 2 }"></v-icon>
+              <v-icon icon="mdi-circle-medium" :class="{ active: team.faultsPartial >= 3 }"></v-icon>
+            </span>
           </div>
           <v-spacer v-if="key == 'left'"></v-spacer>
         </v-card-actions>
@@ -109,7 +113,13 @@ const { teams } = storeToRefs(scoreStore)
         }
 
         &.faults-value__partial {
-          color: orange;
+          display: flex;
+          align-items: center;
+          color: rgba(51, 51, 51, 0.7);
+
+          & .active {
+            color: orange;
+          }
         }
       }
     }
@@ -120,7 +130,10 @@ const { teams } = storeToRefs(scoreStore)
       left: 0;
       .faults-wrapper {
         border-radius: 0 4px 0 0;
-        flex-direction: row-reverse;
+        flex-direction: row;
+        .faults-value__partial {
+          flex-direction: row;
+        }
       }
     }
   }
@@ -130,7 +143,10 @@ const { teams } = storeToRefs(scoreStore)
       right: 0;
       .faults-wrapper {
         border-radius: 4px 0 0 0;
-        flex-direction: row;
+        flex-direction: row-reverse;
+        .faults-value__partial {
+          flex-direction: row-reverse;
+        }
       }
     }
   }

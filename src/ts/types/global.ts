@@ -5,6 +5,7 @@ export type Team = {
   name: string
   score: number
   faults: number
+  faultsPartial: number
   colorKey: ColorKey
 }
 

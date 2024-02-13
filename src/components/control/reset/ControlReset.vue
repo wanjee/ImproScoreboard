@@ -10,8 +10,10 @@ const scoreStore = useScoreStore()
 function resetScores() {
   scoreStore.teams['left'].score = 0
   scoreStore.teams['left'].faults = 0
+  scoreStore.teams['left'].faultsPartial = 0
   scoreStore.teams['right'].score = 0
   scoreStore.teams['right'].faults = 0
+  scoreStore.teams['right'].faultsPartial = 0
 
   showResetDialog.value = false
 }
