@@ -21,7 +21,6 @@ export const useScoreStore = defineStore('score', {
         },
       },
       display: 'title',
-      periodDuration: 45,
     }
   },
   getters: {
@@ -77,6 +76,14 @@ export const useScoreStore = defineStore('score', {
         // Remove one fault from total
         team.faultsPartial--
       }
+    },
+    reset() {
+      this.teams['left'].score = 0
+      this.teams['left'].faults = 0
+      this.teams['left'].faultsPartial = 0
+      this.teams['right'].score = 0
+      this.teams['right'].faults = 0
+      this.teams['right'].faultsPartial = 0
     },
   },
 })

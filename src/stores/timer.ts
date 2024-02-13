@@ -35,5 +35,12 @@ export const useTimerStore = defineStore('timer', {
     setDurationFromMinutes(minutes: number) {
       this.duration = minutes * 60 * 1000
     },
+    reset() {
+      this.duration = 45 * 60 * 1000
+      this.remaining = 0
+      this.startTime = 0
+      this.isRunning = false
+      this.resetTime = 0
+    },
   },
 })
