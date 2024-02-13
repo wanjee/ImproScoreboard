@@ -3,11 +3,11 @@ import ControlTeamScore from '@/components/control/team/score/ControlTeamScore.v
 import { useScoreStore } from '@/stores/score'
 import { storeToRefs } from 'pinia'
 import ControlTeamFaults from '@/components/control/team/faults/ControlTeamFaults.vue'
-import type { teamKey as teamKeyType } from '@/ts/types/global'
+import type { TeamKey as TeamKeyType } from '@/ts/types/global'
 import { colors } from '@/ts/constants/colors'
 
 const props = defineProps<{
-  teamKey: teamKeyType
+  teamKey: TeamKeyType
 }>()
 
 const scoreStore = useScoreStore()

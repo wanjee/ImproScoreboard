@@ -1,5 +1,5 @@
-export type color = {
-  key: colorKey
+export type Color = {
+  key: ColorKey
   label: string
   // Can be any CSS supported color: hexa, rgb, hsl, color name,...
   color: string
@@ -28,4 +28,4 @@ export const colors = {
   },
 }
 
-export type colorKey = keyof typeof colors
+export type ColorKey = keyof typeof colors

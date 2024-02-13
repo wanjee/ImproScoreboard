@@ -1,6 +1,6 @@
-export type logo = {
+export type Logo = {
   // Key helps us to use
-  key: logoKey
+  key: LogoKey
   label: string
   // File needs to be available in public/img/
   filename: string
@@ -19,4 +19,4 @@ export const logos = {
   },
 }
 
-export type logoKey = keyof typeof logos
+export type LogoKey = keyof typeof logos

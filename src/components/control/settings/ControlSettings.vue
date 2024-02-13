@@ -4,9 +4,9 @@ import { useScoreStore } from '@/stores/score'
 import { useBoardScreenStore } from '@/stores/boardScreen'
 import { useTitleScreenStore } from '@/stores/titleScreen'
 import { colors } from '@/ts/constants/colors'
-import type { colorKey } from '@/ts/constants/colors'
+import type { ColorKey } from '@/ts/constants/colors'
 import { logos } from '@/ts/constants/logos'
-import type { logoKey } from '@/ts/constants/logos'
+import type { LogoKey } from '@/ts/constants/logos'
 
 // Indicates dialog is open or not
 const showSettingsDialog = ref(false)
@@ -43,11 +43,11 @@ function submitSettingsForm(submitEvent: Event) {
 
   titleScreenStore.primaryTitle = getNamedInput(form, 'titleScreenPrimaryTitle')?.value ?? ''
   titleScreenStore.secondaryTitle = getNamedInput(form, 'titleScreenSecondaryTitle')?.value ?? ''
-  titleScreenStore.logoKey = (getNamedInput(form, 'titleScreenLogo')?.value as logoKey) ?? ''
-  titleScreenStore.message = (getNamedInput(form, 'titleScreenMessage')?.value as logoKey) ?? ''
+  titleScreenStore.logoKey = (getNamedInput(form, 'titleScreenLogo')?.value as LogoKey) ?? ''
+  titleScreenStore.message = (getNamedInput(form, 'titleScreenMessage')?.value as LogoKey) ?? ''
   console.log(getNamedInput(form, 'titleScreenLogo')?.value)
-  scoreStore.teams.left.colorKey = (getNamedInput(form, 'scoreLeftColor')?.value as colorKey) ?? ''
-  scoreStore.teams.right.colorKey = (getNamedInput(form, 'scoreRightColor')?.value as colorKey) ?? ''
+  scoreStore.teams.left.colorKey = (getNamedInput(form, 'scoreLeftColor')?.value as ColorKey) ?? ''
+  scoreStore.teams.right.colorKey = (getNamedInput(form, 'scoreRightColor')?.value as ColorKey) ?? ''
 
   // Then we close dialog
   showSettingsDialog.value = false

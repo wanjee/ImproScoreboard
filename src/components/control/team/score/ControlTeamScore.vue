@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useScoreStore } from '@/stores/score'
 import { storeToRefs } from 'pinia'
-import type { teamKey as teamKeyType } from '@/ts/types/global'
+import type { TeamKey as teamKeyType } from '@/ts/types/global'
 
 const props = defineProps<{
   teamKey: teamKeyType

@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import type { ScoreState, teamKey } from '@/ts/types/global'
+import type { ScoreState, TeamKey } from '@/ts/types/global'
 
 export const useScoreStore = defineStore('score', {
   state: (): ScoreState => {
@@ -24,30 +24,30 @@ export const useScoreStore = defineStore('score', {
   },
   getters: {
     getTeamByKey: (state) => {
-      return (key: teamKey) => state.teams[key]
+      return (key: TeamKey) => state.teams[key]
     },
   },
   actions: {
-    incrementTeamScore(key: teamKey) {
+    incrementTeamScore(key: TeamKey) {
       const team = this.teams[key]
       if (team) {
         team.score++
       }
     },
-    decrementTeamScore(key: teamKey) {
+    decrementTeamScore(key: TeamKey) {
       const team = this.teams[key]
       // Prevent negative score
       if (team && team.score > 0) {
         team.score--
       }
     },
-    incrementTeamFaults(key: teamKey) {
+    incrementTeamFaults(key: TeamKey) {
       const team = this.teams[key]
       if (team) {
         team.faults++
       }
     },
-    decrementTeamFaults(key: teamKey) {
+    decrementTeamFaults(key: TeamKey) {
       const team = this.teams[key]
       // Prevent negative faults count
       if (team && team.faults > 0) {
