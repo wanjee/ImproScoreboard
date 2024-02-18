@@ -11,6 +11,7 @@ export const useScoreStore = defineStore('score', {
           faults: 0,
           faultsPartial: 0,
           colorKey: 'blue',
+          isConversionRunning: false,
         },
         right: {
           name: 'Right',
@@ -18,15 +19,11 @@ export const useScoreStore = defineStore('score', {
           faults: 0,
           faultsPartial: 0,
           colorKey: 'red',
+          isConversionRunning: false,
         },
       },
       display: 'title',
     }
-  },
-  getters: {
-    getTeamByKey: (state) => {
-      return (key: TeamKey) => state.teams[key]
-    },
   },
   actions: {
     incrementTeamScore(key: TeamKey) {
@@ -58,7 +55,7 @@ export const useScoreStore = defineStore('score', {
         team.faults--
 
         if (team.faultsPartial == 0) {
-          // If we add to remove one point from total but we have none in partial
+          // If we had to remove one point from total but we have none in partial
           // it means we probably just converted
           team.faultsPartial = 2
         } else if (team.faultsPartial > 0) {
@@ -73,7 +70,7 @@ export const useScoreStore = defineStore('score', {
       const team = this.teams[key]
       // Prevent negative faults count
       if (team && team.faultsPartial > 0) {
-        // Remove one fault from total
+        // Remove one fault from partial
         team.faultsPartial--
       }
     },

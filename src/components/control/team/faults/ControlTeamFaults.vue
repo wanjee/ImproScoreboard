@@ -1,29 +1,22 @@
 <script setup lang="ts">
 import { useScoreStore } from '@/stores/score'
-import { storeToRefs } from 'pinia'
 import type { TeamKey as TeamKeyType } from '@/ts/types/global'
-import { ref } from 'vue'
 
-const props = defineProps<{
+defineProps<{
   teamKey: TeamKeyType
 }>()
 
 const scoreStore = useScoreStore()
 
-const { getTeamByKey } = storeToRefs(scoreStore)
-const team = getTeamByKey.value(props.teamKey)
-
-const conversionIsBusy = ref(false)
-
 /**
  * Helper to convert faults from one team to one point to the other team
- * We do that here to temporarize changes of states to have a nice animation on the score board
+ * We do that here to have a nice animation on the score board
  *
- * @param teamKey number Key of the team we want to convert faults from
+ * @param teamKey Key of the team we want to convert faults from
  */
 function convertFaultsFromTeam(teamKey: TeamKeyType) {
   // Check that we can trigger this
-  if (team.faultsPartial < 0 || conversionIsBusy.value) {
+  if (scoreStore.teams[teamKey].faultsPartial < 0 || scoreStore.teams[teamKey].isConversionRunning) {
     return
   }
 
@@ -34,21 +27,22 @@ function convertFaultsFromTeam(teamKey: TeamKeyType) {
   Promise.resolve()
     .then(() => {
       // Initialise step
-      // Ensure we have only one conversion at a time
-      conversionIsBusy.value = true
+      // Ensure we have only one conversion at a time and allow animation
+      scoreStore.teams[teamKey].isConversionRunning = true
       // Revert order of bullets to remove them by simple decrement
       // but still make them initiate a visual move to the opponent team
     })
-    // Remove 1st fault directly
+    .then(() => delay(300))
+    // Remove 1st fault
     .then(() => {
       scoreStore.decrementTeamFaultsPartial(teamKey)
     })
-    .then(() => delay(200))
+    .then(() => delay(300))
     // Remove 2nd fault
     .then(() => {
       scoreStore.decrementTeamFaultsPartial(teamKey)
     })
-    .then(() => delay(200))
+    .then(() => delay(300))
     // Remove 3rd fault
     .then(() => {
       scoreStore.decrementTeamFaultsPartial(teamKey)
@@ -56,18 +50,19 @@ function convertFaultsFromTeam(teamKey: TeamKeyType) {
     .then(() => delay(200))
     // Add one point to the other team
     .then(() => {
-      const opponentTeamKey: TeamKeyType = teamKey == 'right' ? 'left' : 'right'
+      const opponentTeamKey: TeamKeyType = teamKey === 'right' ? 'left' : 'right'
       scoreStore.incrementTeamScore(opponentTeamKey)
     })
     .then(() => {
       // Finalise step
       // Allow a new conversion to run
-      conversionIsBusy.value = false
+      scoreStore.teams[teamKey].isConversionRunning = false
     })
 }
 
 /**
  * Helper to add delay between all state changes we want to chain in time
+ *
  * @param duration number Amount of milliseconds of delay
  */
 function delay(duration: number) {
@@ -78,19 +73,19 @@ function delay(duration: number) {
 </script>
 
 <template>
-  <v-container v-if="team">
+  <v-container v-if="scoreStore.teams[teamKey]">
     <v-row dense justify-center align-center>
       <v-col class="d-flex justify-end align-center">
         <v-btn
           color="red-darken-2"
           size="small"
           icon="mdi-minus"
-          :disabled="team.faults <= 0"
+          :disabled="scoreStore.teams[teamKey].faults <= 0"
           @click="scoreStore.decrementTeamFaults(teamKey)"
         ></v-btn>
       </v-col>
       <v-col class="d-flex justify-center align-center fault-value">
-        {{ team.faults }} / {{ team.faultsPartial }}
+        {{ scoreStore.teams[teamKey].faults }} / {{ scoreStore.teams[teamKey].faultsPartial }}
       </v-col>
       <v-col class="d-flex justify-start align-center">
         <v-btn
@@ -104,12 +99,12 @@ function delay(duration: number) {
     <v-row dense justify-center align-center>
       <v-col class="d-flex justify-center align-center">
         <v-btn
-          :disabled="team.faultsPartial < 3"
+          :disabled="scoreStore.teams[teamKey].faultsPartial < 3"
           variant="outlined"
           size="x-small"
           color="green-darken-2"
           type="submit"
-          :loading="conversionIsBusy"
+          :loading="scoreStore.teams[teamKey].isConversionRunning"
           @click="convertFaultsFromTeam(teamKey)"
           title="Convert 3 faults to one point for the other team"
         >

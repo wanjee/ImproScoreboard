@@ -7,6 +7,7 @@ export type Team = {
   faults: number
   faultsPartial: number
   colorKey: ColorKey
+  isConversionRunning: boolean
 }
 
 export type DisplayType = 'black' | 'title' | 'score'
