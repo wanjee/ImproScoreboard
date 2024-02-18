@@ -13,6 +13,7 @@ html {
     /* This font should not be bold */
     font-weight: normal;
     font-size: 6vh;
+    text-align: center;
   }
 
   h2 {
@@ -20,5 +21,6 @@ html {
     /* This font should not be bold */
     font-weight: normal;
     font-size: 4vh;
+    text-align: center;
   }
 }
