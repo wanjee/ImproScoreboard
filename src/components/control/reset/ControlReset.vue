@@ -41,10 +41,9 @@ function reset() {
         </h4>
         <p>
           Scores and faults reset to 0.<br />
-          Timer is stopped and reset to its default location.<br />
-            Settings (team colors, titles,...) are <strong>not</strong> reset.
+          Timer is stopped and reset to its default duration.<br />
+          Settings (team colors, titles,...) are <strong>not</strong> reset.
         </p>
-        <p>There is no rollback possible.</p>
       </v-card-text>
       <v-card-actions>
         <v-btn variant="text" @click="showResetDialog = false"> Cancel </v-btn>

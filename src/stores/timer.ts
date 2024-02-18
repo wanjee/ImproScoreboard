@@ -20,7 +20,7 @@ export const useTimerStore = defineStore('timer', {
       // Track time of a reset so we have some reactive that will change each time
       // Duration, as an example, will not always change when we want to reset a timer
       // so it cannot be watched for that purpose
-      resetTime: 0,
+      resetTime: Date.now(),
     }
   },
   getters: {
@@ -40,7 +40,8 @@ export const useTimerStore = defineStore('timer', {
       this.remaining = 0
       this.startTime = 0
       this.isRunning = false
-      this.resetTime = 0
+      // Force resetTime to change to ensure timer display is reset even if duration is the same as original
+      this.resetTime = Date.now()
     },
   },
 })
