@@ -125,9 +125,17 @@ onBeforeUnmount(() => {
 
 <template>
   <ol class="clock animated" ref="clockElement">
-    <li v-if="timerStore.showHours" class="time-part hours">{{ hours }}</li>
-    <li class="time-part minutes">{{ minutes }}</li>
-    <li class="time-part seconds">{{ seconds }}</li>
+    <li v-if="timerStore.showHours" class="time-part hours">
+      <span>{{ hours }}</span>
+    </li>
+    <li v-if="timerStore.showHours" class="colon">:</li>
+    <li class="time-part minutes">
+      <span>{{ minutes }}</span>
+    </li>
+    <li class="colon">:</li>
+    <li class="time-part seconds">
+      <span>{{ seconds }}</span>
+    </li>
   </ol>
 </template>
 
@@ -135,27 +143,47 @@ onBeforeUnmount(() => {
 .clock {
   font-family: 'E1234', sans-serif;
 
-  background: #5e5e5e;
+  background: #4b4b4b;
   border-radius: 4px;
-  display: grid;
   font-size: 5vh;
   font-variant-numeric: tabular-nums;
   font-weight: bold;
-  gap: 10px;
-  grid-auto-flow: column;
-  padding: 5px;
+  padding: 3px;
+  display: flex;
 
   & li {
     list-style: none;
-    background: #333333;
     border-radius: 4px;
-    display: grid;
-    padding: 0 5px;
     text-align: center;
     width: auto;
-    text-shadow:
-      0 0 2px black,
-      0 0 2px white;
+
+    &.time-part {
+      padding: 0 5px;
+      background: #333333;
+      position: relative;
+
+      span {
+        /* Make numbers appears before the 88 background */
+        position: relative;
+        z-index: 2;
+      }
+
+      &:after {
+        content: '88';
+        color: #4b4b4b;
+        /* Place 88 as the background of numbers */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+      }
+    }
+    &.colon {
+      padding: 0;
+      margin: 0 -5px;
+      color: #333333;
+    }
   }
 }
 </style>

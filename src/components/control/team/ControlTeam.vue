@@ -29,12 +29,12 @@ const scoreStore = useScoreStore()
 
 <style>
 .control-team {
-    &.team__left {
-        text-align: left;
-    }
+  &.team__left {
+    text-align: left;
+  }
 
-    &.team__right {
-        text-align: right;
-    }
+  &.team__right {
+    text-align: right;
+  }
 }
 </style>
