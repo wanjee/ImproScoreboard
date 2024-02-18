@@ -45,7 +45,6 @@ function submitSettingsForm(submitEvent: Event) {
   titleScreenStore.secondaryTitle = getNamedInput(form, 'titleScreenSecondaryTitle')?.value ?? ''
   titleScreenStore.logoKey = (getNamedInput(form, 'titleScreenLogo')?.value as LogoKey) ?? ''
   titleScreenStore.message = (getNamedInput(form, 'titleScreenMessage')?.value as LogoKey) ?? ''
-  console.log(getNamedInput(form, 'titleScreenLogo')?.value)
   scoreStore.teams.left.colorKey = (getNamedInput(form, 'scoreLeftColor')?.value as ColorKey) ?? ''
   scoreStore.teams.right.colorKey = (getNamedInput(form, 'scoreRightColor')?.value as ColorKey) ?? ''
 
