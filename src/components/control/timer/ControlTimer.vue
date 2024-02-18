@@ -83,7 +83,7 @@ function submitTimerForm(submitEvent: Event) {
   <v-card>
     <v-container>
       <v-row dense justify-center align-center>
-        <v-col class="justify-center align-center pa-6">
+        <v-col class="d-flex justify-center align-center pa-6">
           <BaseTimer></BaseTimer>
         </v-col>
         <v-col class="d-flex justify-center align-center pa-6">
