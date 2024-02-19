@@ -104,10 +104,16 @@ const scoreStore = useScoreStore()
         &.faults-value__partial {
           display: flex;
           align-items: center;
-          color: rgba(51, 51, 51, 0.7);
 
-          & .active {
-            color: orange;
+          .v-icon {
+            color: rgba(51, 51, 51, 0.7);
+            /* Transition should have similar duration as the delay added
+               in convertFaultsFromTeam function in ControlTeamFaults component */
+            transition: all 0.4s cubic-bezier(0.63, 0.05, 0.43, 3.5);
+
+            &.active {
+              color: orange;
+            }
           }
         }
       }
@@ -127,7 +133,7 @@ const scoreStore = useScoreStore()
     }
     &.team__conversion-running {
       .faults-value__partial {
-        flex-direction: row-reverse;
+        flex-direction: row-reverse !important;
       }
     }
   }
@@ -145,7 +151,7 @@ const scoreStore = useScoreStore()
     }
     &.team__conversion-running {
       .faults-value__partial {
-        flex-direction: row;
+        flex-direction: row !important;
       }
     }
   }
