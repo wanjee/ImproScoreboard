@@ -113,6 +113,7 @@ const scoreStore = useScoreStore()
 
             &.active {
               color: orange;
+              text-shadow: 0 0 10px white;
             }
           }
         }
