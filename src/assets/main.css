@@ -8,9 +8,10 @@ html {
 }
 
 .screen {
+  font-family: 'Lato', sans-serif;
+
   h1 {
     font-family: 'Alfa Slab One', sans-serif;
-    /* This font should not be bold */
     font-weight: normal;
     font-size: 6vh;
     text-align: center;
@@ -18,9 +19,15 @@ html {
 
   h2 {
     font-family: 'Lato', sans-serif;
-    /* This font should not be bold */
     font-weight: normal;
     font-size: 4vh;
+    text-align: center;
+  }
+
+  .message {
+    font-family: 'Lato', sans-serif;
+    font-weight: normal;
+    font-size: 2.5vh;
     text-align: center;
   }
 }

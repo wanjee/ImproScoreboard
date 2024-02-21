@@ -18,7 +18,7 @@ const titleScreenStore = useTitleScreenStore()
     </v-col>
   </v-row>
   <v-row justify-center align-center class="flex-shrink-1">
-    <v-col v-if="titleScreenStore.message" class="d-flex flex-column justify-center align-center">
+    <v-col v-if="titleScreenStore.message" class="message d-flex flex-column justify-center align-center">
       {{ titleScreenStore.message }}
     </v-col>
   </v-row>
