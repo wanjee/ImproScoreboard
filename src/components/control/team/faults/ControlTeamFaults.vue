@@ -47,7 +47,7 @@ function convertFaultsFromTeam(teamKey: TeamKeyType) {
     .then(() => {
       scoreStore.decrementTeamFaultsPartial(teamKey)
     })
-    .then(() => delay(200))
+    .then(() => delay(400))
     // Add one point to the other team
     .then(() => {
       const opponentTeamKey: TeamKeyType = teamKey === 'right' ? 'left' : 'right'
