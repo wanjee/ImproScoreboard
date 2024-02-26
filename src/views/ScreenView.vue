@@ -8,15 +8,25 @@ const scoreStore = useScoreStore()
 </script>
 
 <template>
-  <v-container fluid class="screen flex-grow-1 d-flex flex-column flex-nowrap">
+  <Transition name="fade" mode="out-in">
     <ScreenBlack v-if="scoreStore.display === 'black'"></ScreenBlack>
     <ScreenBoard v-else-if="scoreStore.display === 'score'"></ScreenBoard>
     <ScreenTitle v-else-if="scoreStore.display === 'title'"></ScreenTitle>
-  </v-container>
+  </Transition>
 </template>
 
 <style>
 .screen {
   min-height: 100vh;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s linear;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
