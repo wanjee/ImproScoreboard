@@ -109,10 +109,10 @@ const scoreStore = useScoreStore()
             color: rgba(51, 51, 51, 0.7);
             /* Transition should have similar duration as the delay added
                in convertFaultsFromTeam function in ControlTeamFaults component */
-            transition: all 0.4s cubic-bezier(0.63, 0.05, 0.43, 3.5);
+            transition: all 0.4s cubic-bezier(0.63, 0.05, 0.43, 4);
 
             &.active {
-              color: orange;
+              color: darkorange;
               text-shadow: 0 0 10px white;
             }
           }
