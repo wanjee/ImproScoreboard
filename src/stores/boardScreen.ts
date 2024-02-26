@@ -4,7 +4,7 @@ export const useBoardScreenStore = defineStore('boardScreen', {
   state: (): BoardScreenState => {
     return {
       primaryTitle: "La Ligue d'Impro",
-      secondaryTitle: '🔞 Match No Limit 🔞',
+      secondaryTitle: '1/4 Finale',
     }
   },
 })

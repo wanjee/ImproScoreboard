@@ -5,9 +5,9 @@ export const useTitleScreenStore = defineStore('titleScreen', {
   state: (): TitleScreenState => {
     return {
       primaryTitle: "La Ligue d'Impro",
-      secondaryTitle: '🔞 Match No Limit 🔞',
+      secondaryTitle: '1/4 Finale',
       logoKey: 'fernand40',
-      message: 'www.ligueimpro.be',
+      message: '',
     }
   },
 })
