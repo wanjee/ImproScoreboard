@@ -10,8 +10,8 @@ const scoreStore = useScoreStore()
 <template>
   <v-container fluid class="screen flex-grow-1 d-flex flex-column flex-nowrap">
     <ScreenBlack v-if="scoreStore.display === 'black'"></ScreenBlack>
-    <ScreenBoard v-if="scoreStore.display === 'score'"></ScreenBoard>
-    <ScreenTitle v-if="scoreStore.display === 'title'"></ScreenTitle>
+    <ScreenBoard v-else-if="scoreStore.display === 'score'"></ScreenBoard>
+    <ScreenTitle v-else-if="scoreStore.display === 'title'"></ScreenTitle>
   </v-container>
 </template>
 
