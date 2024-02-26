@@ -32,22 +32,22 @@ function convertFaultsFromTeam(teamKey: TeamKeyType) {
       // Revert order of bullets to remove them by simple decrement
       // but still make them initiate a visual move to the opponent team
     })
-    .then(() => delay(400))
+    .then(() => delay(300))
     // Remove 1st fault
     .then(() => {
       scoreStore.decrementTeamFaultsPartial(teamKey)
     })
-    .then(() => delay(400))
+    .then(() => delay(300))
     // Remove 2nd fault
     .then(() => {
       scoreStore.decrementTeamFaultsPartial(teamKey)
     })
-    .then(() => delay(400))
+    .then(() => delay(300))
     // Remove 3rd fault
     .then(() => {
       scoreStore.decrementTeamFaultsPartial(teamKey)
     })
-    .then(() => delay(400))
+    .then(() => delay(300))
     // Add one point to the other team
     .then(() => {
       const opponentTeamKey: TeamKeyType = teamKey === 'right' ? 'left' : 'right'
