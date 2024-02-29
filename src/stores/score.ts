@@ -23,6 +23,7 @@ export const useScoreStore = defineStore('score', {
         },
       },
       display: 'title',
+      message: '',
     }
   },
   actions: {
@@ -81,6 +82,7 @@ export const useScoreStore = defineStore('score', {
       this.teams['right'].score = 0
       this.teams['right'].faults = 0
       this.teams['right'].faultsPartial = 0
+      this.message = ''
     },
   },
 })

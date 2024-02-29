@@ -5,6 +5,7 @@ import { storeToRefs } from 'pinia'
 import ControlReset from '@/components/control/reset/ControlReset.vue'
 import ControlSettings from '@/components/control/settings/ControlSettings.vue'
 import ControlTimer from '@/components/control/timer/ControlTimer.vue'
+import ControlMessage from '@/components/control/message/ControlMessage.vue'
 
 const scoreStore = useScoreStore()
 
@@ -18,7 +19,7 @@ const { teams } = storeToRefs(scoreStore)
         <ControlSettings></ControlSettings>
         <ControlReset></ControlReset>
       </template>
-      <v-app-bar-title>La Ligue d'Impro - Control</v-app-bar-title>
+      <v-app-bar-title>La Ligue d'Impro</v-app-bar-title>
       <v-spacer></v-spacer>
       <template v-slot:append>
         <v-btn-toggle v-model="scoreStore.display" mandatory variant="tonal" elevation="2" color="green">
@@ -40,6 +41,11 @@ const { teams } = storeToRefs(scoreStore)
             <ControlTeam :teamKey="key"></ControlTeam>
           </v-col>
         </v-row>
+        <v-row justify="center" align="center" class="flex-shrink-1">
+          <v-col class="d-flex justify-center align-center">
+            <ControlMessage></ControlMessage>
+          </v-col>
+        </v-row>
       </v-container>
     </v-main>
 
@@ -55,5 +61,3 @@ const { teams } = storeToRefs(scoreStore)
     </v-app-bar>
   </v-layout>
 </template>
-
-<style></style>

@@ -20,6 +20,7 @@ export type ScoreState = {
   }
   // One of the available display types
   display: DisplayType
+  message: string
 }
 
 export type TeamKey = keyof ScoreState['teams']

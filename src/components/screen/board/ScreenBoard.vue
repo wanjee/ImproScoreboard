@@ -20,16 +20,32 @@ const { teams } = storeToRefs(scoreStore)
       </v-col>
     </v-row>
     <v-row justify-center align-center class="flex-grow-1">
-      <v-col v-for="(team, key) in teams" :key="key" cols="6" class="pa-10 pt-0">
+      <v-col
+        v-for="(team, key) in teams"
+        :key="key"
+        cols="6"
+        class="py-0"
+        :class="{
+          'pl-16': key == 'left',
+          'pr-8': key == 'left',
+          'pr-16': key == 'right',
+          'pl-8': key == 'right',
+        }"
+      >
         <ScreenBoardTeam :teamKey="key"></ScreenBoardTeam>
       </v-col>
     </v-row>
     <v-row justify-center align-center class="flex-shrink-1">
-      <v-col class="d-flex flex-column align-center">
+      <v-col class="d-flex flex-column justify-center align-center py-0 message">
+        <!-- We want the message container to always be displayed to avoid the rest of content moving
+              without the need for fixed height in css, that should explain the &nbsp; -->
+        {{ scoreStore.message }}&nbsp;
+      </v-col>
+    </v-row>
+    <v-row justify-center align-center class="flex-shrink-1">
+      <v-col class="d-flex flex-column justify-start align-center py-0">
         <BaseTimer></BaseTimer>
       </v-col>
     </v-row>
   </v-container>
 </template>
-
-<style scoped></style>
