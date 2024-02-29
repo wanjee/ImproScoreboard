@@ -13,7 +13,7 @@ const scoreStore = useScoreStore()
 <template>
   <v-card
     v-if="scoreStore.teams[teamKey]"
-    class="team d-flex flex-column"
+    class="d-flex flex-column team"
     :class="{
       team__left: teamKey == 'left',
       team__right: teamKey == 'right',
@@ -122,6 +122,9 @@ const scoreStore = useScoreStore()
   }
 
   &.team__left {
+    margin-left: 20px;
+    margin-right: 10px;
+
     .faults-actions {
       left: 0;
       .faults-wrapper {
@@ -140,6 +143,9 @@ const scoreStore = useScoreStore()
   }
 
   &.team__right {
+    margin-left: 10px;
+    margin-right: 20px;
+
     .faults-actions {
       right: 0;
       .faults-wrapper {
