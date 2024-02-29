@@ -232,5 +232,3 @@ function submitSettingsForm(submitEvent: Event) {
     </v-form>
   </v-dialog>
 </template>
-
-<style></style>

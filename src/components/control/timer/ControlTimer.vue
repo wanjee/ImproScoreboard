@@ -146,5 +146,3 @@ function submitTimerForm(submitEvent: Event) {
     </v-card-actions>
   </v-card>
 </template>
-
-<style></style>

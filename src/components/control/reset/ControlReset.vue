@@ -53,5 +53,3 @@ function reset() {
     </v-card>
   </v-dialog>
 </template>
-
-<style></style>
