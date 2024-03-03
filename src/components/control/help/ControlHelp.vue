@@ -150,13 +150,12 @@ const tab = ref('timeline')
           <v-window-item value="remarks">
             <v-container>
               <ul>
-                <li>L'ajout de point se fait à l'annonce par l'arbitre (check?)</li>
+                <li>L'ajout de point se fait à l'annonce par l'arbitre</li>
                 <li>L'ajout de faute se fait à l'annonce par le maître de cérémonie</li>
                 <li>La conversion des fautes se fait à l'annonce par le maître de cérémonie</li>
                 <li>
-                  Un joueur exclus part avec son point de faute, la faute n'est <strong>pas</strong> comptabilisée
+                  Un joueur exclu part avec son point de faute, la faute n'est <strong>pas</strong> comptabilisée
                 </li>
-                <li>Ouvrir l'affichage public sur projecteur en plein écran</li>
               </ul>
             </v-container>
           </v-window-item>
