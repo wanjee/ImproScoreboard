@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { useScoreStore } from '@/stores/score'
-import ControlTeam from '@/components/control/team/ControlTeam.vue'
 import { storeToRefs } from 'pinia'
+import ControlTeam from '@/components/control/team/ControlTeam.vue'
+import ControlTimer from '@/components/control/timer/ControlTimer.vue'
 import ControlReset from '@/components/control/reset/ControlReset.vue'
 import ControlSettings from '@/components/control/settings/ControlSettings.vue'
-import ControlTimer from '@/components/control/timer/ControlTimer.vue'
+import ControlHelp from '@/components/control/help/ControlHelp.vue'
 import ControlMessage from '@/components/control/message/ControlMessage.vue'
 
 const scoreStore = useScoreStore()
@@ -18,6 +19,7 @@ const { teams } = storeToRefs(scoreStore)
       <template v-slot:prepend>
         <ControlSettings></ControlSettings>
         <ControlReset></ControlReset>
+        <ControlHelp></ControlHelp>
       </template>
       <v-app-bar-title>La Ligue d'Impro</v-app-bar-title>
       <v-spacer></v-spacer>

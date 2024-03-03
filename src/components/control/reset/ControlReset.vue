@@ -32,6 +32,7 @@ function reset() {
     <v-card>
       <v-toolbar>
         <v-btn icon="mdi-close" @click="showResetDialog = false"></v-btn>
+        <v-toolbar-title>Reset</v-toolbar-title>
       </v-toolbar>
       <v-card-text>
         <h4>
