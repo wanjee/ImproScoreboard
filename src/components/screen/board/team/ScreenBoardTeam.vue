@@ -90,7 +90,7 @@ const scoreStore = useScoreStore()
     .faults-wrapper {
       display: flex;
       flex-direction: row;
-      background-color: rgba(51, 51, 51, 0.7);
+      background-color: rgba(51, 51, 51, 0.85);
 
       .faults-value {
         margin: 0 4px;
@@ -98,7 +98,8 @@ const scoreStore = useScoreStore()
         font-weight: bolder;
 
         &.faults-value__total {
-          color: red;
+          color: #ff0000;
+          text-shadow: 0 0 2px rgba(100, 100, 100, 1), 0 0 6px rgba(100, 100, 100, 1);
         }
 
         &.faults-value__partial {
@@ -106,7 +107,7 @@ const scoreStore = useScoreStore()
           align-items: center;
 
           .v-icon {
-            color: rgba(51, 51, 51, 0.7);
+            color: rgba(100, 100, 100, 0.7);
             /* Transition should have similar duration as the delay added
                in convertFaultsFromTeam function in ControlTeamFaults component */
             transition: all 0.4s cubic-bezier(0.63, 0.05, 0.43, 4);
