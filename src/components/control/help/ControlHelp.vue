@@ -153,9 +153,7 @@ const tab = ref('timeline')
                 <li>L'ajout de point se fait à l'annonce par l'arbitre</li>
                 <li>L'ajout de faute se fait à l'annonce par le maître de cérémonie</li>
                 <li>La conversion des fautes se fait à l'annonce par le maître de cérémonie</li>
-                <li>
-                  Un joueur exclu part avec son point de faute, la faute n'est <strong>pas</strong> comptabilisée
-                </li>
+                <li>Un joueur exclu part avec son point de faute, la faute n'est <strong>pas</strong> comptabilisée</li>
               </ul>
             </v-container>
           </v-window-item>

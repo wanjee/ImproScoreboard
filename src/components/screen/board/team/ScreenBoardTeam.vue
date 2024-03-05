@@ -99,7 +99,9 @@ const scoreStore = useScoreStore()
 
         &.faults-value__total {
           color: #ff0000;
-          text-shadow: 0 0 2px rgba(100, 100, 100, 1), 0 0 6px rgba(100, 100, 100, 1);
+          text-shadow:
+            0 0 2px rgba(100, 100, 100, 1),
+            0 0 6px rgba(100, 100, 100, 1);
         }
 
         &.faults-value__partial {
