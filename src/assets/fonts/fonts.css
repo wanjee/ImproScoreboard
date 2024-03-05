@@ -17,21 +17,3 @@
   src: url('./Lato-Regular.ttf');
   font-weight: normal;
 }
-
-@font-face {
-  font-family: 'PoppinsRegular';
-  src: url('./Poppins-Regular.ttf');
-  font-weight: normal;
-}
-
-@font-face {
-  font-family: 'PoppinsBold';
-  src: url('./Poppins-Bold.ttf');
-  font-weight: 700;
-}
-
-@font-face {
-  font-family: 'PoppinsExtraBold';
-  src: url('./Poppins-ExtraBold.ttf');
-  font-weight: 800;
-}
