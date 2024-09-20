@@ -17,6 +17,11 @@ export const logos = {
     label: 'Fernand 40th anniversary',
     filename: 'fernand_40.png',
   },
+  coupeMonde2024: {
+    key: 'coupeMonde2024',
+    label: 'Coupe du Monde 2024',
+    filename: 'coupe_du_monde_2024.png',
+  },
 }
 
 export type LogoKey = keyof typeof logos

@@ -26,6 +26,11 @@ export const colors = {
     label: 'Red',
     color: '#d2232a',
   },
+  white: {
+    key: 'white',
+    label: 'White',
+    color: '#ffffff',
+  },
 }
 
 export type ColorKey = keyof typeof colors
