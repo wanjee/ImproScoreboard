@@ -67,7 +67,7 @@ function submitMessageForm(submitEvent: Event) {
         <v-col class="d-flex flex-column justify-start align-center">
           <v-checkbox
             v-model="realtime"
-            name="titleScreenShowLogo"
+            name="realtimeUpdate"
             label="Realtime update"
             density="compact"
             color="success"
