@@ -18,7 +18,7 @@ function reset() {
 </script>
 
 <template>
-  <v-dialog v-model="showResetDialog" width="auto">
+  <v-dialog v-model="showResetDialog" width="auto" transition="dialog-bottom-transition">
     <template v-slot:activator="{ props }">
       <v-btn
         icon="mdi-restart"
