@@ -8,7 +8,7 @@ const tab = ref('timeline')
 </script>
 
 <template>
-  <v-dialog v-model="showHelpDialog" fullscreen>
+  <v-dialog v-model="showHelpDialog" fullscreen transition="dialog-bottom-transition">
     <template v-slot:activator="{ props }">
       <v-btn icon="mdi-help" elevation="2" @click="showHelpDialog = true" v-bind="props" title="Help"></v-btn>
     </template>
@@ -16,14 +16,18 @@ const tab = ref('timeline')
       <v-toolbar>
         <v-btn icon="mdi-close" @click="showHelpDialog = false"></v-btn>
         <v-toolbar-title>Help</v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-toolbar-items>
+          <v-btn variant="text" @click="showHelpDialog = false"> Close </v-btn>
+        </v-toolbar-items>
       </v-toolbar>
-      <v-card-text>
+      <v-container>
         <v-tabs v-model="tab" fixed-tabs>
           <v-tab value="timeline">Timeline</v-tab>
           <v-tab value="rules">Règles</v-tab>
         </v-tabs>
-        <v-window v-model="tab" class="mt-10">
-          <v-window-item value="timeline">
+        <v-tabs-window v-model="tab" class="mt-10">
+          <v-tabs-window-item value="timeline">
             <v-container>
               <v-timeline align="start" side="end">
                 <v-timeline-item dot-color="green-darken-2" icon="mdi-panorama" fill-dot>
@@ -178,8 +182,8 @@ const tab = ref('timeline')
                 </v-timeline-item>
               </v-timeline>
             </v-container>
-          </v-window-item>
-          <v-window-item value="rules">
+          </v-tabs-window-item>
+          <v-tabs-window-item value="rules">
             <v-container>
               <h3 class="pb-6">Synchronisation des événements</h3>
               <ul>
@@ -273,13 +277,9 @@ const tab = ref('timeline')
                 <dd class="pb-6">Refus systématique des propositions de l'autre jouteur.</dd>
               </dl>
             </v-container>
-          </v-window-item>
-        </v-window>
-      </v-card-text>
-      <v-card-actions>
-        <v-spacer />
-        <v-btn variant="text" @click="showHelpDialog = false"> Close </v-btn>
-      </v-card-actions>
+          </v-tabs-window-item>
+        </v-tabs-window>
+      </v-container>
     </v-card>
   </v-dialog>
 </template>
