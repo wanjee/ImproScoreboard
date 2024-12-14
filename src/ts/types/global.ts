@@ -42,5 +42,6 @@ export type TimerState = {
   remaining: number
   startTime: number
   isRunning: boolean
+  isVisible: boolean
   resetTime: number
 }
