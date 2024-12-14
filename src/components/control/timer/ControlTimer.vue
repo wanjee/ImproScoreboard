@@ -80,7 +80,7 @@ function submitTimerForm(submitEvent: Event) {
 </script>
 
 <template>
-  <v-card title="Timer">
+  <v-card min-height="100%">
     <template v-slot:append>
       <v-switch
         v-model="timerStore.isVisible"
@@ -146,6 +146,7 @@ function submitTimerForm(submitEvent: Event) {
         color="orange-darken-2"
         @click="pause"
       ></v-btn>
+      <v-spacer />
       <v-btn
         variant="outlined"
         size="default"
