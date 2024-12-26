@@ -40,7 +40,7 @@ function resetAdvancedSettingsForm() {
         <v-container>
           <v-tabs v-model="tab" fixed-tabs>
             <v-tab prepend-icon="mdi-format-size" value="fonts">Fonts</v-tab>
-            <!--<v-tab prepend-icon="mdi-fit-to-screen-outline" value="margins">Margins</v-tab>-->
+            <v-tab prepend-icon="mdi-fit-to-screen-outline" value="margins">Margins</v-tab>
             <v-tab prepend-icon="mdi-lightbulb-on" value="dimmer">Dimmer</v-tab>
           </v-tabs>
           <v-tabs-window v-model="tab" class="mt-10">
@@ -77,11 +77,46 @@ function resetAdvancedSettingsForm() {
                   </v-col>
                 </v-row>
                 <v-row justify-center align-center>
+                  <v-col cols="4" offset="4" class="d-flex align-center">
+                    <v-slider
+                      v-model="settingsStore.margins.top"
+                      :min="0"
+                      :max="15"
+                      :step="1"
+                      thumb-label="always"
+                    ></v-slider>
+                  </v-col>
+                </v-row>
+                <v-row justify-center align-center>
                   <v-col class="d-flex align-center">
-                    <v-slider :max="1" :min="0" :step="0.2" thumb-label="always"></v-slider>
-                    <v-slider :max="1" :min="0" :step="0.2" thumb-label="always"></v-slider>
-                    <v-slider :min="0" :max="1" :step="0.2" thumb-label="always"></v-slider>
-                    <v-slider :min="0" :max="1" :step="0.2" thumb-label="always"></v-slider>
+                    <v-slider
+                      v-model="settingsStore.margins.left"
+                      :min="0"
+                      :max="15"
+                      :step="1"
+                      thumb-label="always"
+                    ></v-slider>
+                  </v-col>
+                  <v-col class="d-flex align-center" style="min-height: 25vh; background-color: #333"> </v-col>
+                  <v-col class="d-flex align-center">
+                    <v-slider
+                      v-model="settingsStore.margins.right"
+                      :min="0"
+                      :max="15"
+                      :step="1"
+                      thumb-label="always"
+                    ></v-slider>
+                  </v-col>
+                </v-row>
+                <v-row justify-center align-center>
+                  <v-col cols="4" offset="4" class="d-flex align-center">
+                    <v-slider
+                      v-model="settingsStore.margins.bottom"
+                      :min="0"
+                      :max="15"
+                      :step="1"
+                      thumb-label="always"
+                    ></v-slider>
                   </v-col>
                 </v-row>
               </v-container>

@@ -9,12 +9,36 @@ import ScreenTitle from '@/components/screen/title/ScreenTitle.vue'
 const scoreStore = useScoreStore()
 const settingsStore = useSettingsStore()
 
-// Generate a computed to be used as a css variable to change font size of the message
+// Computed to be used as a css variable to change font size of the message
 const messageFontSize = computed(() => {
   // Ensure value is within acceptable range
   const size = Math.max(2.5, Math.min(settingsStore.messageFontSize, 5.5))
   return size + 'vh'
 })
+
+// Computed to be used as a css variable to change padding of container
+const padding = computed(() => {
+  // We change padding, but visually it's more about adding margin around content, hence the name of the setting
+  const paddingValues = [
+    getPaddingValue(settingsStore.margins.top, 'vh'),
+    getPaddingValue(settingsStore.margins.right, 'vw'),
+    getPaddingValue(settingsStore.margins.bottom, 'vh'),
+    getPaddingValue(settingsStore.margins.left, 'vw'),
+  ]
+
+  // Build a single variable with the padding values
+  return paddingValues.join(' ')
+})
+
+// Ensure all a padding value is within acceptable range
+// We work with relative values, but we don't want to go lower than the default padding which is 16px
+// Keep value within acceptable range
+function getPaddingValue(value: number, suffix: string): string {
+  value = Math.max(0, Math.min(value, 15))
+
+  // Zero values are replaced by fixed '16px' which is default padding set by Vuetify on screen
+  return value === 0 ? '16px' : value + suffix
+}
 </script>
 
 <template>
@@ -40,6 +64,7 @@ const messageFontSize = computed(() => {
 .screen {
   min-height: 100vh;
   font-family: 'Lato', sans-serif;
+  padding: v-bind(padding);
 
   h1 {
     font-family: 'Alfa Slab One', sans-serif;
