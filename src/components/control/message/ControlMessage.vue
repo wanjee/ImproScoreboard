@@ -47,15 +47,22 @@ function submitMessageForm(submitEvent: Event) {
 <template>
   <v-card min-height="100%">
     <template v-slot:append>
-      <v-switch
-        v-model="realtime"
-        hide-details
-        inset
-        title="Realtime update"
-        color="green-darken-2"
-        true-icon="mdi-flash"
-        false-icon="mdi-flash-off"
-      ></v-switch>
+      <!-- Add tooltip on the switch -->
+      <v-tooltip location="start" text="Enable realtime update">
+        <template v-slot:activator="{ props }">
+          <!-- Wrap switch in a div that will be able to receive activator props -->
+          <div v-bind="props">
+            <v-switch
+              v-model="realtime"
+              hide-details
+              inset
+              color="green-darken-2"
+              true-icon="mdi-flash"
+              false-icon="mdi-flash-off"
+            ></v-switch>
+          </div>
+        </template>
+      </v-tooltip>
     </template>
     <v-container>
       <v-form @submit.prevent="submitMessageForm">
