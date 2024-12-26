@@ -80,11 +80,15 @@ function submitSettingsForm(submitEvent: Event) {
           <v-tabs v-model="tab" fixed-tabs>
             <v-tab prepend-icon="mdi-subtitles-outline" value="title">Title</v-tab>
             <v-tab prepend-icon="mdi-scoreboard-outline" value="score">Score</v-tab>
-            <!--<v-tab prepend-icon="mdi-tune-vertical-variant" value="advanced">Advanced</v-tab>-->
           </v-tabs>
           <v-tabs-window v-model="tab" class="mt-10">
             <v-tabs-window-item value="title">
               <v-container>
+                <v-row justify-center align-center>
+                  <v-col class="d-flex align-center">
+                    <h4>Title screen content</h4>
+                  </v-col>
+                </v-row>
                 <v-row justify-center align-center>
                   <v-col class="d-flex align-center">
                     <v-text-field
@@ -155,7 +159,42 @@ function submitSettingsForm(submitEvent: Event) {
               <v-container>
                 <v-row justify-center align-center>
                   <v-col class="d-flex align-center">
-                    <h5>Teams</h5>
+                    <h4>Score screen content</h4>
+                  </v-col>
+                </v-row>
+                <v-row justify-center align-center>
+                  <v-col class="d-flex align-center">
+                    <v-text-field
+                      :model-value="boardScreenStore.primaryTitle"
+                      name="boardScreenPrimaryTitle"
+                      variant="outlined"
+                      density="compact"
+                      size="60"
+                      clearable
+                      label="Primary title"
+                      autocomplete="off"
+                      hint="Prominent title displayed on score screen"
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
+                <v-row justify-center align-center>
+                  <v-col class="d-flex align-center">
+                    <v-text-field
+                      :model-value="boardScreenStore.secondaryTitle"
+                      name="boardScreenSecondaryTitle"
+                      variant="outlined"
+                      density="compact"
+                      size="60"
+                      clearable
+                      label="Secondary title"
+                      autocomplete="off"
+                      hint="Title of the match or other valuable info, displayed after the primary title"
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
+                <v-row justify-center align-center>
+                  <v-col class="d-flex align-center">
+                    <h4>Teams</h4>
                   </v-col>
                 </v-row>
                 <v-row justify-center align-center>
@@ -182,43 +221,6 @@ function submitSettingsForm(submitEvent: Event) {
                       item-title="label"
                       item-value="key"
                     ></v-select>
-                  </v-col>
-                </v-row>
-                <v-row justify-center align-center>
-                  <v-col class="d-flex align-center">
-                    <h5>Content</h5>
-                  </v-col>
-                </v-row>
-
-                <v-row justify-center align-center>
-                  <v-col class="d-flex align-center">
-                    <v-text-field
-                      :model-value="boardScreenStore.primaryTitle"
-                      name="boardScreenPrimaryTitle"
-                      variant="outlined"
-                      density="compact"
-                      size="60"
-                      clearable
-                      label="Primary title"
-                      autocomplete="off"
-                      hint="Prominent title displayed on score screen"
-                    ></v-text-field>
-                  </v-col>
-                </v-row>
-
-                <v-row justify-center align-center>
-                  <v-col class="d-flex align-center">
-                    <v-text-field
-                      :model-value="boardScreenStore.secondaryTitle"
-                      name="boardScreenSecondaryTitle"
-                      variant="outlined"
-                      density="compact"
-                      size="60"
-                      clearable
-                      label="Secondary title"
-                      autocomplete="off"
-                      hint="Title of the match or other valuable info, displayed after the primary title"
-                    ></v-text-field>
                   </v-col>
                 </v-row>
               </v-container>

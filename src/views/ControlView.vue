@@ -7,6 +7,7 @@ import ControlReset from '@/components/control/reset/ControlReset.vue'
 import ControlSettings from '@/components/control/settings/ControlSettings.vue'
 import ControlHelp from '@/components/control/help/ControlHelp.vue'
 import ControlMessage from '@/components/control/message/ControlMessage.vue'
+import ControlAdvancedSettings from '@/components/control/settings/ControlAdvancedSettings.vue'
 
 const scoreStore = useScoreStore()
 
@@ -18,6 +19,7 @@ const { teams } = storeToRefs(scoreStore)
     <v-app-bar>
       <template v-slot:prepend>
         <ControlSettings></ControlSettings>
+        <ControlAdvancedSettings></ControlAdvancedSettings>
         <ControlReset></ControlReset>
         <ControlHelp></ControlHelp>
       </template>
@@ -33,19 +35,17 @@ const { teams } = storeToRefs(scoreStore)
     </v-app-bar>
     <v-main>
       <v-container fluid fill-height>
-        <v-row justify="center" align="center" class="flex-shrink-1">
-          <v-col class="d-flex justify-center align-center">
+        <v-row justify="space-evenly" align="stretch" class="flex-grow-1">
+          <v-col class="justify-space-around" cols="12" sm="12" md="6" lg="4" xl="4" xxl="4">
             <ControlTimer></ControlTimer>
+          </v-col>
+          <v-col class="justify-space-around" cols="12" sm="12" md="6" lg="4" xl="4" xxl="4">
+            <ControlMessage></ControlMessage>
           </v-col>
         </v-row>
         <v-row justify="center" align="center" class="flex-grow-1">
           <v-col v-for="(team, key) in teams" :key="key" cols="12" sm="12" md="6" lg="6" xl="6" xxl="6">
             <ControlTeam :teamKey="key"></ControlTeam>
-          </v-col>
-        </v-row>
-        <v-row justify="center" align="center" class="flex-shrink-1">
-          <v-col class="d-flex justify-center align-center">
-            <ControlMessage></ControlMessage>
           </v-col>
         </v-row>
       </v-container>

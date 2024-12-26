@@ -6,8 +6,12 @@ import getRemainingTime from '@/ts/utilities/getRemainingTime'
 
 let timerInterval = 0
 
+const { inControl = false } = defineProps<{
+  inControl?: boolean
+}>()
+
 const timerStore = useTimerStore()
-const { isRunning, resetTime } = storeToRefs(timerStore)
+const { isRunning, isVisible, resetTime } = storeToRefs(timerStore)
 
 /**
  * This component has no controls, it responds to shared state changes
@@ -29,6 +33,7 @@ const hours = computed(() => {
   // Use UTCHours to bypass any timezone issue
   return padNumber(date.getUTCHours())
 })
+
 /**
  * Update minutes in display from remaining time
  */
@@ -37,6 +42,7 @@ const minutes = computed(() => {
 
   return padNumber(date.getMinutes())
 })
+
 /**
  * Update seconds in display from remaining time
  */
@@ -124,7 +130,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <ol class="clock animated" ref="clockElement">
+  <ol class="clock animated" ref="clockElement" :class="{ hidden: !isVisible, control: inControl }">
     <li v-if="timerStore.showHours" class="time-part hours">
       <span>{{ hours }}</span>
     </li>
@@ -150,6 +156,26 @@ onBeforeUnmount(() => {
   font-weight: bold;
   padding: 3px;
   display: flex;
+  visibility: visible;
+  opacity: 1;
+  transition:
+    visibility 1s ease-in-out,
+    opacity 2s ease-in-out;
+
+  &.hidden {
+    /* On public display we want it to be completely invisible */
+    /* But we do not want it to flicker when enabled/disabled */
+    visibility: hidden;
+    opacity: 0;
+    transition:
+      visibility 1s ease-in-out,
+      opacity 1s ease-in-out;
+    &.control {
+      /* In admin we want the timer to be visible but "hidden" */
+      visibility: visible;
+      opacity: 0.4;
+    }
+  }
 
   & li {
     list-style: none;

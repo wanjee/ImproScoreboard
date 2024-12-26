@@ -4,7 +4,7 @@ import { useScoreStore } from '@/stores/score'
 
 const scoreStore = useScoreStore()
 
-const realtime = ref(false)
+const realtime = ref(true)
 
 /**
  * Update text on change IF realtime is enabled
@@ -45,38 +45,41 @@ function submitMessageForm(submitEvent: Event) {
 </script>
 
 <template>
-  <v-card>
-    <v-form @submit.prevent="submitMessageForm">
-      <v-row dense justify-center align-center>
-        <v-col class="d-flex justify-center align-center px-6 pt-6">
-          <v-text-field
-            name="message"
-            variant="outlined"
-            density="compact"
-            size="50"
-            clearable
-            @click:clear="onClear"
-            @keyup="onMessageChange"
-            label="Message"
-            autocomplete="off"
-            hint="Information to be displayed at the bottom of the score board."
-          ></v-text-field>
-        </v-col>
-      </v-row>
-      <v-row justify-center align-center>
-        <v-col class="d-flex flex-column justify-start align-center">
-          <v-checkbox
-            v-model="realtime"
-            name="realtimeUpdate"
-            label="Realtime update"
-            density="compact"
-            color="success"
-          ></v-checkbox>
-        </v-col>
-        <v-col class="d-flex flex-column justify-start align-center">
-          <v-btn :disabled="realtime" variant="outlined" color="green-darken-2" type="submit"> Manual update </v-btn>
-        </v-col>
-      </v-row>
-    </v-form>
+  <v-card min-height="100%">
+    <template v-slot:append>
+      <!-- Add tooltip on the switch -->
+      <v-tooltip location="start" text="Enable realtime update">
+        <template v-slot:activator="{ props }">
+          <!-- Wrap switch in a div that will be able to receive activator props -->
+          <div v-bind="props">
+            <v-switch
+              v-model="realtime"
+              hide-details
+              inset
+              color="green-darken-2"
+              true-icon="mdi-flash"
+              false-icon="mdi-flash-off"
+            ></v-switch>
+          </div>
+        </template>
+      </v-tooltip>
+    </template>
+    <v-container>
+      <v-form @submit.prevent="submitMessageForm">
+        <v-text-field
+          name="message"
+          variant="outlined"
+          density="compact"
+          size="50"
+          clearable
+          @click:clear="onClear"
+          @keyup="onMessageChange"
+          label="Message"
+          autocomplete="off"
+          hint="Information to be displayed at the bottom of the score board."
+        ></v-text-field>
+        <v-btn :disabled="realtime" variant="outlined" color="green-darken-2" type="submit"> Manual update </v-btn>
+      </v-form>
+    </v-container>
   </v-card>
 </template>

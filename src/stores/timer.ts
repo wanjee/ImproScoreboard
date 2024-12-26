@@ -17,6 +17,8 @@ export const useTimerStore = defineStore('timer', {
       startTime: 0,
       // Is the countdown currently active ?
       isRunning: false,
+      // Is the countdown displayed on score board ?
+      isVisible: true,
       // Track time of a reset so we have some reactive that will change each time
       // Duration, as an example, will not always change when we want to reset a timer
       // so it cannot be watched for that purpose
@@ -40,6 +42,7 @@ export const useTimerStore = defineStore('timer', {
       this.remaining = 0
       this.startTime = 0
       this.isRunning = false
+      this.isVisible = true
       // Force resetTime to change to ensure timer display is reset even if duration is the same as original
       this.resetTime = Date.now()
     },

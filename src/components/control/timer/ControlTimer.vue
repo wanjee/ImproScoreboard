@@ -80,11 +80,29 @@ function submitTimerForm(submitEvent: Event) {
 </script>
 
 <template>
-  <v-card>
+  <v-card min-height="100%">
+    <template v-slot:append>
+      <!-- Add tooltip on the switch -->
+      <v-tooltip location="start" text="Show timer on score board">
+        <template v-slot:activator="{ props }">
+          <!-- Wrap switch in a div that will be able to receive activator props -->
+          <div v-bind="props">
+            <v-switch
+              v-model="timerStore.isVisible"
+              hide-details
+              inset
+              color="green-darken-2"
+              true-icon="mdi-eye"
+              false-icon="mdi-eye-off"
+            ></v-switch>
+          </div>
+        </template>
+      </v-tooltip>
+    </template>
     <v-container>
       <v-row dense justify-center align-center>
         <v-col class="d-flex justify-center align-center pa-6">
-          <BaseTimer></BaseTimer>
+          <BaseTimer in-control></BaseTimer>
         </v-col>
         <v-col class="d-flex justify-center align-center pa-6">
           <v-form
@@ -118,6 +136,7 @@ function submitTimerForm(submitEvent: Event) {
       </v-row>
     </v-container>
     <v-card-actions>
+      <v-spacer />
       <v-btn
         v-if="!timerStore.isRunning"
         variant="outlined"
@@ -143,6 +162,7 @@ function submitTimerForm(submitEvent: Event) {
         title="Stop and reset period to it's original duration"
         @click="stop"
       ></v-btn>
+      <v-spacer />
     </v-card-actions>
   </v-card>
 </template>
