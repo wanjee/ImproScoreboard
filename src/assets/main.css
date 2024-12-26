@@ -6,28 +6,3 @@
 html {
   overflow-y: auto !important;
 }
-
-.screen {
-  font-family: 'Lato', sans-serif;
-
-  h1 {
-    font-family: 'Alfa Slab One', sans-serif;
-    font-weight: normal;
-    font-size: 6vh;
-    text-align: center;
-  }
-
-  h2 {
-    font-family: 'Lato', sans-serif;
-    font-weight: normal;
-    font-size: 4vh;
-    text-align: center;
-  }
-
-  .message {
-    font-family: 'Lato', sans-serif;
-    font-weight: normal;
-    font-size: 3.5vh;
-    text-align: center;
-  }
-}

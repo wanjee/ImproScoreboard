@@ -7,6 +7,7 @@ import ControlReset from '@/components/control/reset/ControlReset.vue'
 import ControlSettings from '@/components/control/settings/ControlSettings.vue'
 import ControlHelp from '@/components/control/help/ControlHelp.vue'
 import ControlMessage from '@/components/control/message/ControlMessage.vue'
+import ControlAdvancedSettings from '@/components/control/settings/ControlAdvancedSettings.vue'
 
 const scoreStore = useScoreStore()
 
@@ -18,6 +19,7 @@ const { teams } = storeToRefs(scoreStore)
     <v-app-bar>
       <template v-slot:prepend>
         <ControlSettings></ControlSettings>
+        <ControlAdvancedSettings></ControlAdvancedSettings>
         <ControlReset></ControlReset>
         <ControlHelp></ControlHelp>
       </template>
