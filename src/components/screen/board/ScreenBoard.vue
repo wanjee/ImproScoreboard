@@ -12,7 +12,7 @@ const { teams } = storeToRefs(scoreStore)
 </script>
 
 <template>
-  <v-container fluid class="screen flex-grow-1 d-flex flex-column flex-nowrap">
+  <v-container fluid class="flex-grow-1 d-flex flex-column flex-nowrap">
     <v-row justify-center align-center class="flex-shrink-1">
       <v-col class="d-flex flex-column justify-center align-center">
         <h1>{{ boardScreenStore.primaryTitle }}</h1>

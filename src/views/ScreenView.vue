@@ -9,9 +9,9 @@ const scoreStore = useScoreStore()
 
 <template>
   <Transition name="fade" mode="out-in">
-    <ScreenBlack v-if="scoreStore.display === 'black'"></ScreenBlack>
-    <ScreenBoard v-else-if="scoreStore.display === 'score'"></ScreenBoard>
-    <ScreenTitle v-else-if="scoreStore.display === 'title'"></ScreenTitle>
+    <ScreenBlack class="screen" v-if="scoreStore.display === 'black'"></ScreenBlack>
+    <ScreenBoard class="screen" v-else-if="scoreStore.display === 'score'"></ScreenBoard>
+    <ScreenTitle class="screen" v-else-if="scoreStore.display === 'title'"></ScreenTitle>
   </Transition>
 </template>
 
