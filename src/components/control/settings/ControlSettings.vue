@@ -37,17 +37,23 @@ function submitSettingsForm(submitEvent: Event) {
   // Ensure TS is happy with what it receives
   const form = submitEvent.target as HTMLFormElement
 
+  // Since form is split into several Vuetify tabs all the fields might not exist in the DOM
+  // when the form is submitted... we want the existing value to be kept in such case, hence the default we set
   // Commit form changes: get all input values and store them in state
   // We also need to ensure TS is happy by explicitly asserting the type of nameItem return value
-  boardScreenStore.primaryTitle = getNamedInput(form, 'boardScreenPrimaryTitle')?.value ?? ''
-  boardScreenStore.secondaryTitle = getNamedInput(form, 'boardScreenSecondaryTitle')?.value ?? ''
+  titleScreenStore.primaryTitle = getNamedInput(form, 'titleScreenPrimaryTitle')?.value ?? titleScreenStore.primaryTitle
+  titleScreenStore.secondaryTitle =
+    getNamedInput(form, 'titleScreenSecondaryTitle')?.value ?? titleScreenStore.secondaryTitle
+  titleScreenStore.logoKey = (getNamedInput(form, 'titleScreenLogo')?.value as LogoKey) ?? titleScreenStore.logoKey
+  titleScreenStore.message = getNamedInput(form, 'titleScreenMessage')?.value ?? titleScreenStore.message
 
-  titleScreenStore.primaryTitle = getNamedInput(form, 'titleScreenPrimaryTitle')?.value ?? ''
-  titleScreenStore.secondaryTitle = getNamedInput(form, 'titleScreenSecondaryTitle')?.value ?? ''
-  titleScreenStore.logoKey = (getNamedInput(form, 'titleScreenLogo')?.value as LogoKey) ?? ''
-  titleScreenStore.message = (getNamedInput(form, 'titleScreenMessage')?.value as LogoKey) ?? ''
-  scoreStore.teams.left.colorKey = (getNamedInput(form, 'scoreLeftColor')?.value as ColorKey) ?? ''
-  scoreStore.teams.right.colorKey = (getNamedInput(form, 'scoreRightColor')?.value as ColorKey) ?? ''
+  boardScreenStore.primaryTitle = getNamedInput(form, 'boardScreenPrimaryTitle')?.value ?? boardScreenStore.primaryTitle
+  boardScreenStore.secondaryTitle =
+    getNamedInput(form, 'boardScreenSecondaryTitle')?.value ?? boardScreenStore.secondaryTitle
+  scoreStore.teams.left.colorKey =
+    (getNamedInput(form, 'scoreLeftColor')?.value as ColorKey) ?? scoreStore.teams.left.colorKey
+  scoreStore.teams.right.colorKey =
+    (getNamedInput(form, 'scoreRightColor')?.value as ColorKey) ?? scoreStore.teams.right.colorKey
 
   // Then we close dialog
   showSettingsDialog.value = false
