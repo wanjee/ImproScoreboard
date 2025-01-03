@@ -173,7 +173,7 @@ onBeforeUnmount(() => {
     &.control {
       /* In admin we want the timer to be visible but "hidden" */
       visibility: visible;
-      opacity: 0.4;
+      opacity: 0.3;
     }
   }
 
@@ -196,7 +196,7 @@ onBeforeUnmount(() => {
 
       &:after {
         content: '88';
-        color: #4b4b4b;
+        color: #414141;
         /* Place 88 as the background of numbers */
         position: absolute;
         top: 50%;
