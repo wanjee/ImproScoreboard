@@ -118,50 +118,53 @@ function submitTimerForm(submitEvent: Event) {
               density="compact"
               size="5"
               suffix="Minutes"
-              label="Period duration"
+              label="New time"
               autocomplete="off"
               :disabled="timerStore.startTime > 0"
               :rules="[rules.required, rules.isNumber]"
             ></v-text-field>
-            <v-btn
-              :disabled="timerStore.startTime > 0 || !isFormValid"
-              variant="outlined"
-              color="green-darken-2"
-              type="submit"
-            >
-              Set timer
-            </v-btn>
+            <v-btn-group variant="outlined" divided>
+              <v-btn
+                variant="outlined"
+                size="x-small"
+                icon="mdi-stop"
+                color="red-darken-2"
+                title="Stop and reset period to it's original duration"
+                @click="stop"
+              ></v-btn>
+              <v-btn
+                :disabled="timerStore.startTime > 0 || !isFormValid"
+                variant="outlined"
+                color="green-darken-2"
+                type="submit"
+              >
+                Set time
+              </v-btn>
+            </v-btn-group>
           </v-form>
         </v-col>
       </v-row>
     </v-container>
     <v-card-actions>
       <v-spacer />
-      <v-btn
-        v-if="!timerStore.isRunning"
-        variant="outlined"
-        size="default"
-        icon="mdi-play"
-        color="green-darken-2"
-        @click="start"
-      ></v-btn>
-      <v-btn
-        v-if="timerStore.isRunning"
-        variant="outlined"
-        size="default"
-        icon="mdi-pause"
-        color="orange-darken-2"
-        @click="pause"
-      ></v-btn>
-      <v-spacer />
-      <v-btn
-        variant="outlined"
-        size="default"
-        icon="mdi-stop"
-        color="red-darken-2"
-        title="Stop and reset period to it's original duration"
-        @click="stop"
-      ></v-btn>
+      <v-btn-group variant="outlined" divided>
+        <v-btn
+          v-if="!timerStore.isRunning"
+          variant="outlined"
+          size="default"
+          icon="mdi-play"
+          color="green-darken-2"
+          @click="start"
+        ></v-btn>
+        <v-btn
+          v-if="timerStore.isRunning"
+          variant="outlined"
+          size="default"
+          icon="mdi-pause"
+          color="orange-darken-2"
+          @click="pause"
+        ></v-btn>
+      </v-btn-group>
       <v-spacer />
     </v-card-actions>
   </v-card>
