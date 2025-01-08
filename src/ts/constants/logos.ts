@@ -7,6 +7,11 @@ export type Logo = {
 }
 
 export const logos = {
+  fernand2025: {
+    key: 'fernand2025',
+    label: 'Fernand 2025',
+    filename: 'fernand_2025.png',
+  },
   fernand2024: {
     key: 'fernand2024',
     label: 'Fernand 2024',
