@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useSettingsStore } from '@/stores/settings'
+import ControlScreenPaddingPreview from '@/components/control/settings/ControlScreenPaddingPreview.vue'
 
 // Indicates dialog is open or not
 const showAdvancedSettingsDialog = ref(false)
@@ -84,6 +85,7 @@ function resetAdvancedSettingsForm() {
                       :max="15"
                       :step="1"
                       thumb-label="always"
+                      color="green-darken-2"
                     ></v-slider>
                   </v-col>
                 </v-row>
@@ -95,9 +97,12 @@ function resetAdvancedSettingsForm() {
                       :max="15"
                       :step="1"
                       thumb-label="always"
+                      color="green-darken-2"
                     ></v-slider>
                   </v-col>
-                  <v-col class="d-flex align-center" style="min-height: 25vh; background-color: #333"> </v-col>
+                  <v-col class="d-flex align-center">
+                    <control-screen-padding-preview></control-screen-padding-preview>
+                  </v-col>
                   <v-col class="d-flex align-center">
                     <v-slider
                       v-model="settingsStore.margins.right"
@@ -105,6 +110,7 @@ function resetAdvancedSettingsForm() {
                       :max="15"
                       :step="1"
                       thumb-label="always"
+                      color="green-darken-2"
                     ></v-slider>
                   </v-col>
                 </v-row>
@@ -116,6 +122,7 @@ function resetAdvancedSettingsForm() {
                       :max="15"
                       :step="1"
                       thumb-label="always"
+                      color="green-darken-2"
                     ></v-slider>
                   </v-col>
                 </v-row>
