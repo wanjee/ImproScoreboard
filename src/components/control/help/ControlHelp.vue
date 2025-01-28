@@ -77,15 +77,6 @@ const tab = ref('timeline')
                     <span class="me-4">Entrée des jouteurs</span>
                   </template>
                   <div>
-                    <span>Title</span>
-                  </div>
-                </v-timeline-item>
-
-                <v-timeline-item dot-color="green-darken-2" icon="mdi-bugle" fill-dot>
-                  <template v-slot:opposite>
-                    <span class="me-4">Sirène</span>
-                  </template>
-                  <div>
                     <span>Score</span>
                   </div>
                 </v-timeline-item>
@@ -192,6 +183,21 @@ const tab = ref('timeline')
                 <li>La conversion des fautes se fait à l'annonce par le maître de cérémonie.</li>
                 <li>
                   Un joueur exclu part avec son point de faute, la faute n'est <strong>pas</strong> comptabilisée.
+                </li>
+                <li>
+                  Le timer doit être mis en pause pendant un comptage :
+                  <ul>
+                    <li><strong>pause</strong> lorsque l'arbitre annonce "On compte";</li>
+                    <li><strong>play</strong> lorsque le point est attribué.</li>
+                  </ul>
+                </li>
+                <li>
+                  Le timer doit être mis en pause pendant des explications, uniquement pendant les
+                  <strong>15 dernières minutes de la 2eme période</strong> :
+                  <ul>
+                    <li><strong>pause</strong> lorsque la discussion commence;</li>
+                    <li><strong>play</strong> lorsque le point est attribué.</li>
+                  </ul>
                 </li>
               </ul>
               <v-divider thickness="1" class="mb-6 mt-6"></v-divider>
