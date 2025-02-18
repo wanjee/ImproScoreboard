@@ -39,10 +39,10 @@ function resetAdvancedSettingsForm() {
           </v-toolbar-items>
         </v-toolbar>
         <v-container>
-          <v-tabs v-model="tab" fixed-tabs>
-            <v-tab prepend-icon="mdi-format-size" value="fonts">Fonts</v-tab>
-            <v-tab prepend-icon="mdi-fit-to-screen-outline" value="margins">Margins</v-tab>
-            <v-tab prepend-icon="mdi-lightbulb-on" value="dimmer">Dimmer</v-tab>
+          <v-tabs v-model="tab" fixed-tabs stacked>
+            <v-tab value="fonts"><v-icon icon="mdi-format-size"></v-icon> Fonts</v-tab>
+            <v-tab value="margins"><v-icon icon="mdi-fit-to-screen-outline"></v-icon> Margins</v-tab>
+            <v-tab value="dimmer"><v-icon icon="mdi-lightbulb-on"></v-icon> Dimmer</v-tab>
           </v-tabs>
           <v-tabs-window v-model="tab" class="mt-10">
             <v-tabs-window-item value="fonts">

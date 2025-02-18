@@ -83,9 +83,9 @@ function submitSettingsForm(submitEvent: Event) {
           </v-toolbar-items>
         </v-toolbar>
         <v-container>
-          <v-tabs v-model="tab" fixed-tabs>
-            <v-tab prepend-icon="mdi-subtitles-outline" value="title">Title</v-tab>
-            <v-tab prepend-icon="mdi-scoreboard-outline" value="score">Score</v-tab>
+          <v-tabs v-model="tab" fixed-tabs stacked>
+            <v-tab value="title"><v-icon icon="mdi-subtitles-outline"></v-icon>Title</v-tab>
+            <v-tab value="score"><v-icon icon="mdi-scoreboard-outline"></v-icon>Score</v-tab>
           </v-tabs>
           <v-tabs-window v-model="tab" class="mt-10">
             <v-tabs-window-item value="title">

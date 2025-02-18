@@ -22,9 +22,10 @@ const tab = ref('timeline')
         </v-toolbar-items>
       </v-toolbar>
       <v-container>
-        <v-tabs v-model="tab" fixed-tabs>
-          <v-tab value="timeline">Timeline</v-tab>
-          <v-tab value="rules">Règles</v-tab>
+        <v-tabs v-model="tab" fixed-tabs stacked>
+          <v-tab value="timeline"><v-icon icon="mdi-timeline-clock"></v-icon> Timeline</v-tab>
+          <v-tab value="rules"><v-icon icon="mdi-whistle"></v-icon> Règles</v-tab>
+          <v-tab value="anthem"><v-icon icon="mdi-music-note"></v-icon> Hymne</v-tab>
         </v-tabs>
         <v-tabs-window v-model="tab" class="mt-10">
           <v-tabs-window-item value="timeline">
@@ -566,6 +567,30 @@ const tab = ref('timeline')
                 <dt>Obstruction (majeure)</dt>
                 <dd class="pb-6">Refus systématique des propositions de l'autre jouteur.</dd>
               </dl>
+            </v-container>
+          </v-tabs-window-item>
+          <v-tabs-window-item value="anthem">
+            <v-container class="anthem text-center">
+              <p class="font-italic ma-3">
+                Dans cette nuit, j'ai envie de me perdre.<br />
+                Le son de la ville me rend amoureux.<br />
+                Pas besoin de sous pour acheter une amourette,<br />
+                ma jolie compagne me prête ses yeux.<br />
+              </p>
+
+              <p class="font-italic ma-3">
+                Sous la lueur de la lune blanche,<br />
+                le monde devient notre lit d'amour.<br />
+                Allons au bistrot, faut qu'la joie prenne sa revanche.<br />
+                Vivons cette nuit, oublions le jour.<br />
+              </p>
+
+              <p class="font-italic ma-3">
+                Ik wil deze nacht in de straten verdwalen,<br />
+                de klank van de stad maakt mijn ziel amoureus.<br />
+                Al heb ik geen geld om plezier te betalen,<br />
+                ik vind wel een vrouwke heel net en genereus.<br />
+              </p>
             </v-container>
           </v-tabs-window-item>
         </v-tabs-window>
