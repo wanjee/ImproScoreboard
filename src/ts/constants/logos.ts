@@ -7,6 +7,11 @@ export type Logo = {
 }
 
 export const logos = {
+  match: {
+    key: 'match',
+    label: 'Le match d\'impro',
+    filename: 'match.png',
+  },
   fernand2025: {
     key: 'fernand2025',
     label: 'Fernand 2025',
